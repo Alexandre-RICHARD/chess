@@ -40,16 +40,55 @@ body {
     height: 80px;
     width: 80px;
     background-size: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .case--white {
-    color: #ffffff;
     background-color: #0F0909;
 }
 
 .case--black {
-    color: #0F0909;
     background-color: #ffffff;
+}
+
+.pieceColor--white {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.pieceColor--black {
+    color: #af2727;
+    cursor: pointer;
+}
+
+.case img {
+    margin-bottom: 5%;
+}
+
+.pawn {
+    height: 70%;
+}
+
+.rook {
+    height: 80%;
+}
+
+.knight {
+    height: 80%;
+}
+
+.bishop {
+    height: 85%;
+}
+
+.queen {
+    height: 85%;
+}
+
+.king {
+    height: 90%;
 }
 
 /* .ext {
@@ -60,21 +99,6 @@ body {
     border: 3px solid rgb(54, 100, 60);
     background-color: rgb(136, 114, 73);
     border: 3px solid rgb(95, 80, 51);
-}
-
-.border {
-    border: 5px solid #EDE4CE;
-    width: 640px;
-    height: 640px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.case {
-
-    padding: 0;
-    background-size: 80px;
-    cursor: pointer;
 }
 
 .color:nth-child(2n + 1) {

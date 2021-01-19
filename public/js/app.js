@@ -46,30 +46,44 @@ const app = {
 
     drawCases: (boardData) => {
         let x = 0;
-        for (let i = 1 ; i < 9 ; i++) {
-        let y = x + 8;
-        const number1 = document.createElement('div');
-        number1.classList.add('number');
-        number1.textContent = i;
-        const number2 = number1.cloneNode(true);
-        number1.style.borderRight = "2px solid #0F0909"
-        app.board.appendChild(number1);
-        for (x ; x < y ; x++) {
-            const boardCase = document.createElement('div');
-            if (boardData[x].cell_color === "white") {
-                boardCase.classList.add('case', 'case--white')
-            } else {
-                boardCase.classList.add('case', 'case--black')
+        let z = 1;
+        for (let i = 1; i < 9; i++) {
+            let y = x + 8;
+            const number1 = document.createElement('div');
+            number1.classList.add('number');
+            number1.textContent = i;
+            const number2 = number1.cloneNode(true);
+            number1.style.borderRight = "2px solid #0F0909"
+            app.board.appendChild(number1);
+
+            for (x; x < y; x++) {
+                const boardCase = document.createElement('div');
+
+                if (z%2 === 0) {
+                    boardCase.classList.add('case', 'case--white')
+                } else {
+                    boardCase.classList.add('case', 'case--black')
+                }
+                z++;
+
+                boardCase.classList.add(`pieceColor--${boardData[x].color}`)
+                console.log(boardData[x].name.split('_')[0])
+                if (boardData[x].name.split('_')[0] !== "none") {
+                    const image = document.createElement('img');
+                    image.src = `/images/${boardData[x].name.split('_')[0]}.svg`;
+                    image.classList.add(`${boardData[x].name.split('_')[0]}`);
+                    boardCase.appendChild(image);
+                }
+
+                boardCase.setAttribute("piece", boardData[x].name);
+                app.board.appendChild(boardCase);
             }
-            if (boardData[x].image !== "none") {
-                boardCase.style.backgroundImage = `url('/images/${boardData[x].image}`
-            }
-            boardCase.setAttribute("piece", boardData[x].name);
-            app.board.appendChild(boardCase);
+            z++;
+
+            number2.style.borderLeft = "2px solid #0F0909"
+            app.board.appendChild(number2);
         }
-        number2.style.borderLeft = "2px solid #0F0909"
-        app.board.appendChild(number2);
-        }
+
         app.drawLettersRow(1);
     },
 
