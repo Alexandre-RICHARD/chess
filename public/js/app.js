@@ -69,10 +69,9 @@ const app = {
                 boardCase.classList.add(`pieceColor--${boardData[x].color}`, `${boardData[x].name.split('_')[0]}`);
                 if (boardData[x].name.split('_')[0] !== "none") {
                     const clone = document.importNode(document.querySelector(`#${boardData[x].name.split('_')[0]}`).content, true);
-                    // clone.querySelector('path').classList.add(`${boardData[x].name.split('_')[0]}`);
+                    clone.querySelector('svg').classList.add(`${boardData[x].name.split('_')[0]}`);
                     boardCase.appendChild(clone);
                 }
-
                 boardCase.setAttribute("piece", boardData[x].name);
                 app.board.appendChild(boardCase);
             }
