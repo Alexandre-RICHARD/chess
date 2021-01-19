@@ -39,6 +39,8 @@ body {
 .case {
     height: 80px;
     width: 80px;
+    max-width: 80px;
+    max-height: 80px;
     background-size: 100%;
     display: flex;
     align-items: flex-end;
@@ -54,8 +56,11 @@ body {
 }
 
 .pieceColor--white {
-    color: #ffffff;
+    color: #a71313;
+    fill: lawngreen;
     cursor: pointer;
+    stroke-width: 10px;
+    stroke: lawngreen;
 }
 
 .pieceColor--black {

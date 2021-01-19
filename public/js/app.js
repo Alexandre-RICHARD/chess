@@ -66,13 +66,19 @@ const app = {
                 }
                 z++;
 
-                boardCase.classList.add(`pieceColor--${boardData[x].color}`)
-                console.log(boardData[x].name.split('_')[0])
+                boardCase.classList.add(`pieceColor--${boardData[x].color}`, `${boardData[x].name.split('_')[0]}`);
                 if (boardData[x].name.split('_')[0] !== "none") {
-                    const image = document.createElement('img');
-                    image.src = `/images/${boardData[x].name.split('_')[0]}.svg`;
-                    image.classList.add(`${boardData[x].name.split('_')[0]}`);
-                    boardCase.appendChild(image);
+                    const clone = document.importNode(document.querySelector(`#${boardData[x].name.split('_')[0]}`).content, true);
+                    // clone.querySelector('path').classList.add(`${boardData[x].name.split('_')[0]}`);
+                    boardCase.appendChild(clone);
+
+
+
+
+                    // const image = document.createElement('img');
+                    // image.src = `/images/${boardData[x].name.split('_')[0]}.svg`;
+                    // image.classList.add(`${boardData[x].name.split('_')[0]}`);
+                    // boardCase.appendChild(image);
                 }
 
                 boardCase.setAttribute("piece", boardData[x].name);
