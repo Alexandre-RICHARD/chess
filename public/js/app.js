@@ -51,7 +51,7 @@ const app = {
             let y = x + 8;
             const number1 = document.createElement('div');
             number1.classList.add('number');
-            number1.textContent = i;
+            number1.textContent = 9 - i;
             const number2 = number1.cloneNode(true);
             number1.style.borderRight = "2px solid #0F0909"
             app.board.appendChild(number1);
@@ -71,14 +71,6 @@ const app = {
                     const clone = document.importNode(document.querySelector(`#${boardData[x].name.split('_')[0]}`).content, true);
                     // clone.querySelector('path').classList.add(`${boardData[x].name.split('_')[0]}`);
                     boardCase.appendChild(clone);
-
-
-
-
-                    // const image = document.createElement('img');
-                    // image.src = `/images/${boardData[x].name.split('_')[0]}.svg`;
-                    // image.classList.add(`${boardData[x].name.split('_')[0]}`);
-                    // boardCase.appendChild(image);
                 }
 
                 boardCase.setAttribute("piece", boardData[x].name);

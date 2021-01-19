@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Fraunces', serif;
     background-color: #858585;
 }
 
@@ -28,12 +28,17 @@ body {
     width: 80px;
     height: 30px;
     text-align: center;
-
+    font-weight: 700;
+    font-size: 25px;
 }
 
 .number {
     width: 30px;
-    height: 80px;
+    height: 55px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+    padding-top: 25px;
 }
 
 .case {
@@ -56,15 +61,16 @@ body {
 }
 
 .pieceColor--white {
-    color: #a71313;
-    fill: lawngreen;
-    cursor: pointer;
     stroke-width: 10px;
-    stroke: lawngreen;
+    color: #e4e4e4;
+    stroke: #646464;
+    cursor: pointer;
 }
 
 .pieceColor--black {
-    color: #af2727;
+    stroke-width: 10px;
+    color: #6b6b6b;
+    stroke: #000000;
     cursor: pointer;
 }
 
