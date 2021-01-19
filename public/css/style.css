@@ -1,18 +1,65 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ccc;
+    background-color: #858585;
 }
 
-.mainChess {
+.main {
     display: flex;
 }
 
 .board {
+    display: flex;
+    flex-wrap: wrap;
+    border: 6px solid #0F0909;
     margin: 50px;
+    background-color: #ffffff;
+    width: 704px;
+    height: 704px;
+    min-width: 704px;
+    min-height: 704px;
 }
 
-.ext {
+.corner {
+    width: 32px;
+    height: 32px;
+}
+
+.letter {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.number {
+    width: 30px;
+    height: 80px;
+}
+
+.case {
+    height: 80px;
+    width: 80px;
+    background-size: 100%;
+}
+
+.case--white {
+    color: #ffffff;
+    background-color: #0F0909;
+}
+
+.case--black {
+    color: #0F0909;
+    background-color: #ffffff;
+}
+
+/* .ext {
     border: 50px solid #523124;
+        border: 50px solid #523124;
+    border: 5px solid #EDE4CE;
+    background-color: rgb(73, 136, 81);
+    border: 3px solid rgb(54, 100, 60);
+    background-color: rgb(136, 114, 73);
+    border: 3px solid rgb(95, 80, 51);
 }
 
 .border {
@@ -24,8 +71,7 @@ body {
 }
 
 .case {
-    height: 80px;
-    width: 80px;
+
     padding: 0;
     background-size: 80px;
     cursor: pointer;
@@ -67,4 +113,4 @@ td {
     background-color: rgb(136, 114, 73);
     border: 3px solid rgb(95, 80, 51);
     border-radius: 5px;
-}
+} */

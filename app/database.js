@@ -7,6 +7,7 @@ const {
       underscored: true,
       timestamps: false
     },
+    logging: false
   });
   
   module.exports = sequelize;

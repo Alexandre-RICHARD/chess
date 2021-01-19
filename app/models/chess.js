@@ -9,6 +9,7 @@ Chess.init({
     state: Sequelize.NUMBER,
     pos_x: Sequelize.STRING,
     pos_y: Sequelize.NUMBER,
+    cell_color: Sequelize.STRING,
     pawn_spec: Sequelize.NUMBER,
     image: Sequelize.STRING
 }, {

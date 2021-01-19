@@ -4,15 +4,15 @@ const {
 
 const chessController = {
 
-    chessGame: (req, res) => {
-        Chess.findAll({}).catch(error => {
+    getBoardData: async (req, res) => {
+        try {
+            const data = await Chess.findAll({
+            });
+            res.json(data);
+        } catch (error) {
             console.trace(error);
-            res.status(404).render('404');
-        }).then(chessPieces => {
-            res.render('chessGame', {
-                chessPieces
-            })
-        })
+            res.status(500).json(error.toString());
+        }
     },
 
 }
