@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccc;
+}
+
+.mainChess {
+    display: flex;
+}
+
+.board {
+    margin: 50px;
+}
+
+.ext {
+    border: 50px solid #523124;
+}
+
+.border {
+    border: 5px solid #EDE4CE;
+    width: 640px;
+    height: 640px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.case {
+    height: 80px;
+    width: 80px;
+    padding: 0;
+    background-size: 80px;
+    cursor: pointer;
+}
+
+.color:nth-child(2n + 1) {
+    background-color: #EDE4CE;
+}
+
+.color:nth-child(2n) {
+    background-color: #523124;
+}
+
+.game_summary {
+    margin: 50px;
+}
+
+th,
+td {
+    padding: 3px;
+    border-right: 1px solid black;
+}
+
+.case.selectedCase {
+    width: 74px;
+    height: 74px;
+    background-size: 85px;
+    background-position: -5.5px -5.5px;
+    background-color: rgb(73, 136, 81);
+    border: 3px solid rgb(54, 100, 60);
+    border-radius: 5px;
+}
+
+.case.possibleCase {
+    width: 74px;
+    height: 74px;
+    background-size: 85px;
+    background-position: -5.5px -5.5px;
+    background-color: rgb(136, 114, 73);
+    border: 3px solid rgb(95, 80, 51);
+    border-radius: 5px;
+}

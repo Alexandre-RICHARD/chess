@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<main class="mainChess">
+
+    <% const translate = ['CyberPunk 2077, entre nous.... meilleur jeu de la décennie   ^^', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] %>
+
+    <div class="board">
+        <div class="ext">
+            <div class="border">
+                <% let counterCases = 1 %> 
+                <% for (let y = 8; y > 0 ; y--) { %>
+                    <!-- Chaque ligne -->
+                    <% for (let x = 1; x < 9; x++) { %>
+                        <!-- Chaque case -->
+                        <% const temp = chessPieces.find(element => element.pos_x === translate[x] && element.pos_y === y && element.state === 1) %>
+
+                        <% if (temp) { %>
+                            <div class="case color" id="<%= counterCases %>" style="background-image: url(sprite/<%= temp.image %>)"></div>
+
+                        <% } else { %>
+                            <% const temp = chessPieces.find(element => element.pos_x === translate[x] && element.pos_y === y) %>
+                            <div class="case color" id="<%= counterCases %>"></div>
+                        <% } %>
+
+                            <% counterCases ++; %> 
+                    <% } %>
+                    <!-- Case vide pour la coloration (2n) -->
+                    <div class="color"></div>
+
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <table class="game_summary">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom de la pièce</th>
+                <th>Couleur</th>
+                <th>Etat</th>
+                <th>Position en X</th>
+                <th>Position en Y</th>
+                <th>Pion spécial</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let counterData = 1 %> 
+            <% chessPieces.forEach( (piece) => { %>
+            <tr class="marouflage" id="getData<%= counterData %>">
+                <td id="<%= piece.id %>"><%= piece.id %></td>
+                <td id="<%= piece.name %>"><%= piece.name %></td>
+                <td id="<%= piece.color %>"><%= piece.color %></td>
+                <td id="<%= piece.state %>"><%= piece.state %></td>
+                <td id="<%= piece.pos_x %>"><%= piece.pos_x %></td>
+                <td id="<%= piece.pos_y %>"><%= piece.pos_y %></td>
+                <td id="<%= piece.pawn_spec %>"><%= piece.pawn_spec %></td>
+                <td id="<%= piece.image %>"><%= piece.image %></td>
+            </tr>
+            <% counterData ++; %> 
+            <% }) %>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" src="js/chessControl.js"></script>
+
+</main>
+
+<%- include('partials/footer') %>

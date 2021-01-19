@@ -1,1 +1,1 @@
-# chess
+# Mon petit jeu d'échecs
