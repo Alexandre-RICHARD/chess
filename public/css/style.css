@@ -31,9 +31,9 @@ body {
 }
 
 .letterContainer {
-    width: 704px;
+    width: 640px;
     height: 32px;
-    min-width: 704px;
+    min-width: 640px;
     min-height: 32px;
 }
 
