@@ -22,10 +22,11 @@ body {
     min-height: 704px;
 }
 
-.board, .letterContainer, .numberContainer {
+.board,
+.letterContainer,
+.numberContainer {
     display: flex;
-    flex-wrap: wrap;       /*! ========= !*/
-    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .letterContainer {
@@ -51,7 +52,8 @@ body {
     min-height: 640px;
 }
 
-.casesContainer, div {
+.casesContainer,
+div {
     display: flex;
     align-content: flex-start;
 }
@@ -67,6 +69,8 @@ body {
     font-weight: 700;
     font-size: 25px;
     color: var(--board-color-one);
+    display: flex;
+    justify-content: center;
 }
 
 .number {
@@ -76,6 +80,8 @@ body {
     font-size: 25px;
     padding-top: 25px;
     color: var(--board-color-one);
+    display: flex;
+    justify-content: center;
 }
 
 .case {
@@ -84,7 +90,8 @@ body {
     max-width: 80px;
     max-height: 80px;
     background-size: 100%;
-    align-items: flex-end;   /* ! =========== !*/
+    align-items: flex-end;
+    /* ! =========== !*/
     justify-content: center;
 }
 
@@ -93,7 +100,7 @@ body {
 }
 
 .case--black {
-    background-color:var(--board-color-two);
+    background-color: var(--board-color-two);
 }
 
 .pieceColor--white {
@@ -118,11 +125,13 @@ body {
     height: 70%;
 }
 
-.rook, .knight {
+.rook,
+.knight {
     height: 80%;
 }
 
-.bishop, .queen {
+.bishop,
+.queen {
     height: 85%;
 }
 
@@ -168,7 +177,7 @@ th {
 }
 
 tr:nth-child(2n) {
-background-color: lightpink;
+    background-color: lightpink;
 }
 
 tr:nth-child(2n+1) {

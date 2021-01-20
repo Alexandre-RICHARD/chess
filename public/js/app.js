@@ -2,7 +2,7 @@ const app = {
 
     // Nos variables qu'on veut globales
     base_URL: "http://localhost:3000",
-    interval: 50,
+    interval: 35,
     table: document.querySelector('.game_summary'),
     letters: ["A", "B", "C", "D", "E", "F", "G", "H"],
 
@@ -52,7 +52,7 @@ const app = {
             letter.style.borderBottom = "2px solid";
             setTimeout(() => {
                 document.querySelector(`#letterC0`).appendChild(letter);
-            }, (y) * (100 / 16) * app.interval);
+            }, (1 + y) * app.interval);
         }
     },
     drawLettersTwo: () => {
@@ -63,7 +63,7 @@ const app = {
             letter.style.borderTop = "2px solid";
             setTimeout(() => {
                 document.querySelector(`#letterC1`).appendChild(letter);
-            }, (y) * (100 / 16) * app.interval);
+            }, (71 + y) * app.interval);
         }
     },
 
@@ -75,7 +75,7 @@ const app = {
             number.style.borderRight = "2px solid"
             setTimeout(() => {
                 document.querySelector(`#numberC0`).appendChild(number);
-            }, (y) * (100 / 16) * app.interval);
+            }, (y * 10 + 1) * app.interval);
         }
     },
 
@@ -87,7 +87,7 @@ const app = {
             number.style.borderLeft = "2px solid"
             setTimeout(() => {
                 document.querySelector(`#numberC1`).appendChild(number);
-            }, (y) * (100 / 16) * app.interval);
+            }, (y * 10 + 9) * app.interval);
         }
     },
 
@@ -101,6 +101,7 @@ const app = {
                 } else {
                     boardCase.classList.add('case', 'case--black')
                 }
+                z++;
                 if (boardData[x * 8 + y].name.split('_')[0] !== "none") {
                     boardCase.classList.add(`pieceColor--${boardData[x*8+y].color}`, `${boardData[x*8+y].name.split('_')[0]}`);
                     const clone = document.importNode(document.querySelector(`#${boardData[x*8+y].name.split('_')[0]}`).content, true);
@@ -110,8 +111,7 @@ const app = {
                 }
                 setTimeout(() => {
                     document.querySelector('#casesC').appendChild(boardCase);
-                }, (x * 8 + y) * (100 / 64) * app.interval);
-                z++;
+                }, (x * 10 + y) * app.interval);
             }
             z++;
         }
