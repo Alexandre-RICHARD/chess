@@ -1,40 +1,48 @@
 const app = {
 
+    // Nos variables qu'on veut globales
     base_URL: "http://localhost:3000",
+    board: document.querySelector('.board'),
+    table: document.querySelector('.game_summary'),
 
+    // Notre initialisation du tableau, du gameBoard
     init: () => {
         app.drawBoardandTable();
     },
 
+    // Fonction conçue pour créer initialement le board et la table mais aussi pour la regénérer à souhait
+    drawBoardandTable: () => {
+        app.board.innerHTML = '';
+        app.table.innerHTML = '';
+        app.drawLettersRow(0);
+        app.getBoardData().then(app.drawCases);
+        app.getBoardData().then(app.fillTable);
+    },
+
+    // Récupération des données
     async getBoardData() {
         try {
             let data = await fetch(app.base_URL + '/board/data');
             let boardData = await data.json();
-            app.drawCases(boardData);
-            app.fillTable(boardData);
+            return boardData;
         } catch (error) {
             console.trace(error);
         }
     },
 
-    board: document.querySelector('.board'),
-
-    drawBoardandTable: () => {
-        document.querySelector('.board').innerHTML = '';
-        document.querySelector('.game_summary').innerHTML = '';
-        app.drawLettersRow(0);
-        app.getBoardData();
-    },
-
+    // Création de la première et dernière ligne contenant les lettres. Appelée au tout début dans drawBoardandTable et à la fin du drawCases
     drawLettersRow: (position) => {
         const letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
+        // Il faut d'abord créer les coins
         const corner1 = document.createElement('div');
         corner1.classList.add('corner');
         app.board.appendChild(corner1);
+        // Boucle des 8 lettres
         for (let i = 0; i < 8; i++) {
             const letter = document.createElement('div');
             letter.classList.add('letter');
             letter.textContent = letters[i];
+            // Si le paramètre donnée à l'appel des fonctions est de 0, c'est donc la première ligne du board, donc bordure en dessous, sinon dernière ligne et bordure au dessus
             if (position === 0) {
                 letter.style.borderBottom = "2px solid #0F0909";
             } else {
@@ -42,14 +50,19 @@ const app = {
             }
             app.board.appendChild(letter);
         }
+        // Notre deuxième coin qui clone le premier
         const corner2 = corner1.cloneNode(true);
         app.board.appendChild(corner2);
     },
 
     drawCases: (boardData) => {
+        // X va être utilisé comme base pour y et pour la boucle for des lignes. Initialisée à zéro, elle commencera chaque boucle for avec +8
         let x = 0;
+        // Z est utilisée pour la couleur des cases de l'échiquier. En effet, la première case d'une ligne est de la même couleur que la dernière case de la précédente. Donc, z s'incrémente à chaque case dans la boucle for des cases et prend +1 après cette boucle.
         let z = 1;
+        // De 1 à 8, création de chaque ligne avec d'abord une div pour les nombres (cloné déjà pour le 2ème à cause des bordure.)
         for (let i = 1; i < 9; i++) {
+            // Y prend la valeur Y = x + 8 pour qu'il suive la même "incrémentation"
             let y = x + 8;
             const number1 = document.createElement('div');
             number1.classList.add('number');
@@ -57,19 +70,19 @@ const app = {
             const number2 = number1.cloneNode(true);
             number1.style.borderRight = "2px solid #0F0909"
             app.board.appendChild(number1);
-
+            // Boucle for des 8 cases pour une ligne
             for (x; x < y; x++) {
                 const boardCase = document.createElement('div');
-
+                // On utilise le Z ici, s'il est pair, alors case blanche, sinon elle est noire
                 if (z % 2 === 0) {
                     boardCase.classList.add('case', 'case--white')
                 } else {
                     boardCase.classList.add('case', 'case--black')
                 }
                 z++;
-
-                boardCase.classList.add(`pieceColor--${boardData[x].color}`, `${boardData[x].name.split('_')[0]}`);
+                // Partie très désagréable à lire, mais en gros, si dans les data, cette case porte une pièce, on lui rajoute les bonnes classes (couleur et noms de la pièce), on créé un clone de SVG (template déjà dans le HTML) et un attribut portant le nom complet de la pièce (nom + id)
                 if (boardData[x].name.split('_')[0] !== "none") {
+                    boardCase.classList.add(`pieceColor--${boardData[x].color}`, `${boardData[x].name.split('_')[0]}`);
                     const clone = document.importNode(document.querySelector(`#${boardData[x].name.split('_')[0]}`).content, true);
                     clone.querySelector('svg').classList.add(`${boardData[x].name.split('_')[0]}`);
                     boardCase.appendChild(clone);
@@ -77,18 +90,20 @@ const app = {
                 boardCase.setAttribute("piece", boardData[x].name);
                 app.board.appendChild(boardCase);
             }
+            // L'incrément de Z "bonus" pour faire +9 à chaque ligne
             z++;
-
+            // La dernière partie de la deuxième nombre
             number2.style.borderLeft = "2px solid #0F0909"
             app.board.appendChild(number2);
         }
-
+        // On appelle après que nos 1 + 8 lignes aient été créées de nouveau la fonction drawLetters pour faire la 10ème ligne avec cette fois le paramètre 1 qui servira à mettre les bordur-top
         app.drawLettersRow(1);
     },
 
+    // Création de notre tableau de valeur, assez basique
     fillTable: (boardData) => {
-        console.log(boardData);
         const table = document.querySelector('.game_summary');
+        // Création et remplissage du thead à l'aide de for in qui récupère le nom des propriétés
         const thead = document.createElement('thead');
         const tr1 = document.createElement('tr')
         for (const property in boardData[0]) {
@@ -99,13 +114,14 @@ const app = {
         thead.appendChild(tr1);
         table.appendChild(thead);
 
+        // Création du body qui utilise un for each pour récupérer chaque "ligne" de la base de donnée puis un for in element[...] pour avoir la valeur de chaque clé
         const tbody = document.createElement('thead');
         boardData.forEach(element => {
             const tr2 = document.createElement('tr')
-            for (const property in element) {
-                const prop = document.createElement('td');
-                prop.textContent = element[property];
-                tr2.appendChild(prop);
+            for (const key in element) {
+                const td = document.createElement('td');
+                td.textContent = element[key];
+                tr2.appendChild(td);
             }
             tbody.appendChild(tr2);
         })
