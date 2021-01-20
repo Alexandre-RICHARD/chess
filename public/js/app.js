@@ -3,15 +3,15 @@ const app = {
     base_URL: "http://localhost:3000",
 
     init: () => {
-        app.drawBoard();
+        app.drawBoardandTable();
     },
 
     async getBoardData() {
         try {
             let data = await fetch(app.base_URL + '/board/data');
             let boardData = await data.json();
-            console.log(boardData);
             app.drawCases(boardData);
+            app.fillTable(boardData);
         } catch (error) {
             console.trace(error);
         }
@@ -19,7 +19,9 @@ const app = {
 
     board: document.querySelector('.board'),
 
-    drawBoard: () => {
+    drawBoardandTable: () => {
+        document.querySelector('.board').innerHTML = '';
+        document.querySelector('.game_summary').innerHTML = '';
         app.drawLettersRow(0);
         app.getBoardData();
     },
@@ -59,7 +61,7 @@ const app = {
             for (x; x < y; x++) {
                 const boardCase = document.createElement('div');
 
-                if (z%2 === 0) {
+                if (z % 2 === 0) {
                     boardCase.classList.add('case', 'case--white')
                 } else {
                     boardCase.classList.add('case', 'case--black')
@@ -83,6 +85,34 @@ const app = {
 
         app.drawLettersRow(1);
     },
+
+    fillTable: (boardData) => {
+        console.log(boardData);
+        const table = document.querySelector('.game_summary');
+        const thead = document.createElement('thead');
+        const tr1 = document.createElement('tr')
+        for (const property in boardData[0]) {
+            const prop = document.createElement('th');
+            prop.textContent = property;
+            tr1.appendChild(prop);
+        }
+        thead.appendChild(tr1);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('thead');
+        boardData.forEach(element => {
+            const tr2 = document.createElement('tr')
+            for (const property in element) {
+                const prop = document.createElement('td');
+                prop.textContent = element[property];
+                tr2.appendChild(prop);
+            }
+            tbody.appendChild(tr2);
+        })
+        table.appendChild(tbody);
+    },
+
+
 
     // initEventCase: () => {
     //     const cases = document.querySelectorAll('.case');

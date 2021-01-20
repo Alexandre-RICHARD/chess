@@ -3,10 +3,6 @@ body {
     background-color: #858585;
 }
 
-.main {
-    display: flex;
-}
-
 .board {
     display: flex;
     flex-wrap: wrap;
@@ -61,16 +57,16 @@ body {
 }
 
 .pieceColor--white {
-    stroke-width: 10px;
+    stroke-width: 25px;
     color: #e4e4e4;
     stroke: #646464;
     cursor: pointer;
 }
 
 .pieceColor--black {
-    stroke-width: 10px;
-    color: #6b6b6b;
-    stroke: #000000;
+    stroke-width: 25px;
+    color: #1a1a1a;
+    stroke: #808080;
     cursor: pointer;
 }
 
@@ -102,32 +98,30 @@ body {
     height: 90%;
 }
 
-/* .ext {
-    border: 50px solid #523124;
-        border: 50px solid #523124;
-    border: 5px solid #EDE4CE;
-    background-color: rgb(73, 136, 81);
-    border: 3px solid rgb(54, 100, 60);
-    background-color: rgb(136, 114, 73);
-    border: 3px solid rgb(95, 80, 51);
-}
-
-.color:nth-child(2n + 1) {
-    background-color: #EDE4CE;
-}
-
-.color:nth-child(2n) {
-    background-color: #523124;
-}
-
 .game_summary {
     margin: 50px;
 }
 
 th,
 td {
-    padding: 3px;
-    border-right: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+th {
+    font-weight: 700;
+    background-color: lightskyblue;
+}
+
+tr:nth-child(2n) {
+background-color: lightpink;
+}
+
+tr:nth-child(2n+1) {
+    background-color: lightgrey;
 }
 
 .case.selectedCase {
@@ -148,4 +142,4 @@ td {
     background-color: rgb(136, 114, 73);
     border: 3px solid rgb(95, 80, 51);
     border-radius: 5px;
-} */
+}
