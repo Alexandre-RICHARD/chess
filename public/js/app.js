@@ -112,8 +112,6 @@ const app = {
         table.appendChild(tbody);
     },
 
-
-
     initEventCase: () => {
         const cases = document.querySelectorAll('.case');
         cases.forEach(tempCase => {
