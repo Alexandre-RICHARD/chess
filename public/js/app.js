@@ -19,9 +19,8 @@ const app = {
         <div id="numberC1" class="numberContainer"></div>
         <div id="letterC1" class="letterContainer"></div>
         `;
-        app.table.innerHTML = '';
-        app.drawLettersRow(0);
         app.getBoardData().then(app.drawCases);
+        app.table.innerHTML = '';
         app.getBoardData().then(app.fillTable);
     },
 
@@ -42,9 +41,7 @@ const app = {
         // Il faut d'abord créer les coins
         const corner1 = document.createElement('div');
         corner1.classList.add('corner');
-        setTimeout(() => {
         document.querySelector(`#letterC${position}`).appendChild(corner1);
-        }, 1 * app.interval);
         // Boucle des 8 lettres
         for (let i = 0; i < 8; i++) {
             const letter = document.createElement('div');
@@ -56,20 +53,14 @@ const app = {
             } else {
                 letter.style.borderTop = "2px solid";
             }
-            setTimeout(() => {
             document.querySelector(`#letterC${position}`).appendChild(letter);
-            }, (i + 2) * app.interval);
         }
         // Notre deuxième coin qui clone le premier
         const corner2 = corner1.cloneNode(true);
-        setTimeout(() => {
         document.querySelector(`#letterC${position}`).appendChild(corner2);
-        }, 10 * app.interval);
     },
 
     drawCases: (boardData) => {
-        //  On utilise une variable t pour gérer correctement les calculs de setTimeout
-        let t = 2;
         // X va être utilisé comme base pour y et pour la boucle for des lignes. Initialisée à zéro, elle commencera chaque boucle for avec +8
         let x = 0;
         // Z est utilisée pour la couleur des cases de l'échiquier. En effet, la première case d'une ligne est de la même couleur que la dernière case de la précédente. Donc, z s'incrémente à chaque case dans la boucle for des cases et prend +1 après cette boucle.
@@ -85,9 +76,7 @@ const app = {
             number1.style.borderRight = "2px solid"
 
 
-            setTimeout(() => {
                 document.querySelector('#numberC0').appendChild(number1);
-            }, ((i * 10 + i) * app.interval));
 
 
             // Boucle for des 8 cases pour une ligne
@@ -111,12 +100,7 @@ const app = {
                 boardCase.setAttribute("piece", boardData[x].name);
 
 
-                setTimeout(() => {
                     document.querySelector('#casesC').appendChild(boardCase); //!!!!!!!!
-                }, ((i * 10 + t) * app.interval));
-                // On incrémente t pour utiliser correctement le setTimeout
-                t++;
-
             }
             // L'incrément de Z "bonus" pour faire +9 à chaque ligne
             z++;
@@ -124,16 +108,12 @@ const app = {
             number2.style.borderLeft = "2px solid"
 
 
-            setTimeout(() => {
                 document.querySelector('#numberC1').appendChild(number2); //!!!!!!!!
-            }, ((i + 1) * 6) * app.interval);
 
 
         }
         // On appelle après que nos 1 + 8 lignes aient été créées de nouveau la fonction drawLetters pour faire la 10ème ligne avec cette fois le paramètre 1 qui servira à mettre les bordur-top
-        setTimeout(() => {
         app.drawLettersRow(1);
-        }, 80 * app.interval);
     },
 
     // Création de notre tableau de valeur, assez basique
