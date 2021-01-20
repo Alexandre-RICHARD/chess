@@ -2,8 +2,9 @@ const app = {
 
     // Nos variables qu'on veut globales
     base_URL: "http://localhost:3000",
-    interval: 5,
+    interval: 50,
     table: document.querySelector('.game_summary'),
+    letters: ["A", "B", "C", "D", "E", "F", "G", "H"],
 
     // Notre initialisation du tableau, du gameBoard
     init: () => {
@@ -23,8 +24,10 @@ const app = {
         <div id="letterC1" class="letterContainer"></div>
         <div class="corner"></div>
         `;
-        app.drawLetters();
-        app.drawNumbers();
+        app.drawLettersOne();
+        app.drawLettersTwo();
+        app.drawNumbersOne();
+        app.drawNumbersTwo();
         app.getBoardData().then(app.drawCases);
         app.table.innerHTML = '';
         app.getBoardData().then(app.fillTable);
@@ -41,40 +44,50 @@ const app = {
         }
     },
 
-    drawLetters: () => {
-        for (let x = 0; x < 2; x++) {
-            const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-            for (let y = 0; y < 8; y++) {
-                const letter = document.createElement('div');
-                letter.classList.add('letter');
-                letter.textContent = letters[y];
-                if (x === 0) {
-                    letter.style.borderBottom = "2px solid";
-                } else {
-                    letter.style.borderTop = "2px solid";
-                }
-                setTimeout(() => {
-                    document.querySelector(`#letterC${x}`).appendChild(letter);
-                }, (x * 8 + y) * (100/16) * app.interval);
-            }
+    drawLettersOne: () => {
+        for (let y = 0; y < 8; y++) {
+            const letter = document.createElement('div');
+            letter.classList.add('letter');
+            letter.textContent = app.letters[y];
+            letter.style.borderBottom = "2px solid";
+            setTimeout(() => {
+                document.querySelector(`#letterC0`).appendChild(letter);
+            }, (y) * (100 / 16) * app.interval);
+        }
+    },
+    drawLettersTwo: () => {
+        for (let y = 0; y < 8; y++) {
+            const letter = document.createElement('div');
+            letter.classList.add('letter');
+            letter.textContent = app.letters[y];
+            letter.style.borderTop = "2px solid";
+            setTimeout(() => {
+                document.querySelector(`#letterC1`).appendChild(letter);
+            }, (y) * (100 / 16) * app.interval);
         }
     },
 
-    drawNumbers: () => {
-        for (let x = 0; x < 2; x++) {
-            for (let y = 0; y < 8; y++) {
-                const number = document.createElement('div');
-                number.classList.add('number');
-                number.textContent = 8 - y;
-                if (x === 0) {
-                    number.style.borderRight = "2px solid"
-                } else {
-                    number.style.borderLeft = "2px solid"
-                }
-                setTimeout(() => {
-                    document.querySelector(`#numberC${x}`).appendChild(number);
-                }, (x * 8 + y) * (100/16) * app.interval);
-            }
+    drawNumbersOne: () => {
+        for (let y = 0; y < 8; y++) {
+            const number = document.createElement('div');
+            number.classList.add('number');
+            number.textContent = 8 - y;
+            number.style.borderRight = "2px solid"
+            setTimeout(() => {
+                document.querySelector(`#numberC0`).appendChild(number);
+            }, (y) * (100 / 16) * app.interval);
+        }
+    },
+
+    drawNumbersTwo: () => {
+        for (let y = 0; y < 8; y++) {
+            const number = document.createElement('div');
+            number.classList.add('number');
+            number.textContent = 8 - y;
+            number.style.borderLeft = "2px solid"
+            setTimeout(() => {
+                document.querySelector(`#numberC1`).appendChild(number);
+            }, (y) * (100 / 16) * app.interval);
         }
     },
 
@@ -97,7 +110,7 @@ const app = {
                 }
                 setTimeout(() => {
                     document.querySelector('#casesC').appendChild(boardCase);
-                }, (x * 8 + y) * (100/64) * app.interval);
+                }, (x * 8 + y) * (100 / 64) * app.interval);
                 z++;
             }
             z++;

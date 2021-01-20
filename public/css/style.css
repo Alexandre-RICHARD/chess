@@ -13,8 +13,6 @@ body {
 }
 
 .board {
-    display: flex;
-    flex-wrap: wrap;
     margin: 50px;
     border: 6px solid var(--board-color-one);
     background-color: var(--board-color-two);
@@ -24,10 +22,10 @@ body {
     min-height: 704px;
 }
 
-.board div {
+.board, .letterContainer, .numberContainer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap;       /*! ========= !*/
+    justify-content: flex-start;
 }
 
 .letterContainer {
@@ -45,10 +43,17 @@ body {
 }
 
 .casesContainer {
+    display: flex;
+    flex-wrap: wrap;
     width: 640px;
     height: 640px;
     min-width: 640px;
     min-height: 640px;
+}
+
+.casesContainer, div {
+    display: flex;
+    align-content: flex-start;
 }
 
 .corner {
@@ -79,7 +84,8 @@ body {
     max-width: 80px;
     max-height: 80px;
     background-size: 100%;
-    align-items: flex-end;
+    align-items: flex-end;   /* ! =========== !*/
+    justify-content: center;
 }
 
 .case--white {
