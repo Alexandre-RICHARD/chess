@@ -1,18 +1,54 @@
+:root {
+    --fond: #000000;
+    --board-color-one: #acacac;
+    --board-color-two: #d41f1f;
+    --pieces-border: #646464;
+    --pieces-white: #e4e4e4;
+    --pieces-black: #1a1a1a;
+}
+
 body {
     font-family: 'Fraunces', serif;
-    background-color: #858585;
+    background-color: var(--fond);
 }
 
 .board {
     display: flex;
     flex-wrap: wrap;
-    border: 6px solid #0F0909;
     margin: 50px;
-    background-color: #ffffff;
+    border: 6px solid var(--board-color-one);
+    background-color: var(--board-color-two);
     width: 704px;
     height: 704px;
     min-width: 704px;
     min-height: 704px;
+}
+
+.board div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letterContainer {
+    width: 704px;
+    height: 32px;
+    min-width: 704px;
+    min-height: 32px;
+}
+
+.numberContainer {
+    width: 32px;
+    height: 640px;
+    min-width: 32px;
+    min-height: 640px;
+}
+
+.casesContainer {
+    width: 640px;
+    height: 640px;
+    min-width: 640px;
+    min-height: 640px;
 }
 
 .corner {
@@ -23,18 +59,18 @@ body {
 .letter {
     width: 80px;
     height: 30px;
-    text-align: center;
     font-weight: 700;
     font-size: 25px;
+    color: var(--board-color-one);
 }
 
 .number {
     width: 30px;
     height: 55px;
-    text-align: center;
     font-weight: 700;
     font-size: 25px;
     padding-top: 25px;
+    color: var(--board-color-one);
 }
 
 .case {
@@ -43,30 +79,28 @@ body {
     max-width: 80px;
     max-height: 80px;
     background-size: 100%;
-    display: flex;
     align-items: flex-end;
-    justify-content: center;
 }
 
 .case--white {
-    background-color: #0F0909;
+    background-color: var(--board-color-one);
 }
 
 .case--black {
-    background-color: #ffffff;
+    background-color:var(--board-color-two);
 }
 
 .pieceColor--white {
     stroke-width: 25px;
-    color: #e4e4e4;
-    stroke: #646464;
+    color: var(--pieces-white);
+    stroke: var(--pieces-border);
     cursor: pointer;
 }
 
 .pieceColor--black {
     stroke-width: 25px;
-    color: #1a1a1a;
-    stroke: #808080;
+    color: var(--pieces-black);
+    stroke: var(--pieces-border);
     cursor: pointer;
 }
 
@@ -78,25 +112,36 @@ body {
     height: 70%;
 }
 
-.rook {
+.rook, .knight {
     height: 80%;
 }
 
-.knight {
-    height: 80%;
-}
-
-.bishop {
-    height: 85%;
-}
-
-.queen {
+.bishop, .queen {
     height: 85%;
 }
 
 .king {
     height: 90%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .game_summary {
     margin: 50px;

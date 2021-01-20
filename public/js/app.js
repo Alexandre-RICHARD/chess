@@ -2,7 +2,7 @@ const app = {
 
     // Nos variables qu'on veut globales
     base_URL: "http://localhost:3000",
-    board: document.querySelector('.board'),
+    interval: 5,
     table: document.querySelector('.game_summary'),
 
     // Notre initialisation du tableau, du gameBoard
@@ -12,7 +12,13 @@ const app = {
 
     // Fonction conçue pour créer initialement le board et la table mais aussi pour la regénérer à souhait
     drawBoardandTable: () => {
-        app.board.innerHTML = '';
+        document.querySelector('.board').innerHTML = `
+        <div id="letterC0" class="letterContainer"></div>
+        <div id="numberC0" class="numberContainer"></div>
+        <div id="casesC" class="casesContainer"></div>
+        <div id="numberC1" class="numberContainer"></div>
+        <div id="letterC1" class="letterContainer"></div>
+        `;
         app.table.innerHTML = '';
         app.drawLettersRow(0);
         app.getBoardData().then(app.drawCases);
@@ -36,7 +42,9 @@ const app = {
         // Il faut d'abord créer les coins
         const corner1 = document.createElement('div');
         corner1.classList.add('corner');
-        app.board.appendChild(corner1);
+        setTimeout(() => {
+        document.querySelector(`#letterC${position}`).appendChild(corner1);
+        }, 1 * app.interval);
         // Boucle des 8 lettres
         for (let i = 0; i < 8; i++) {
             const letter = document.createElement('div');
@@ -44,18 +52,24 @@ const app = {
             letter.textContent = letters[i];
             // Si le paramètre donnée à l'appel des fonctions est de 0, c'est donc la première ligne du board, donc bordure en dessous, sinon dernière ligne et bordure au dessus
             if (position === 0) {
-                letter.style.borderBottom = "2px solid #0F0909";
+                letter.style.borderBottom = "2px solid";
             } else {
-                letter.style.borderTop = "2px solid #0F0909";
+                letter.style.borderTop = "2px solid";
             }
-            app.board.appendChild(letter);
+            setTimeout(() => {
+            document.querySelector(`#letterC${position}`).appendChild(letter);
+            }, (i + 2) * app.interval);
         }
         // Notre deuxième coin qui clone le premier
         const corner2 = corner1.cloneNode(true);
-        app.board.appendChild(corner2);
+        setTimeout(() => {
+        document.querySelector(`#letterC${position}`).appendChild(corner2);
+        }, 10 * app.interval);
     },
 
     drawCases: (boardData) => {
+        //  On utilise une variable t pour gérer correctement les calculs de setTimeout
+        let t = 2;
         // X va être utilisé comme base pour y et pour la boucle for des lignes. Initialisée à zéro, elle commencera chaque boucle for avec +8
         let x = 0;
         // Z est utilisée pour la couleur des cases de l'échiquier. En effet, la première case d'une ligne est de la même couleur que la dernière case de la précédente. Donc, z s'incrémente à chaque case dans la boucle for des cases et prend +1 après cette boucle.
@@ -68,10 +82,17 @@ const app = {
             number1.classList.add('number');
             number1.textContent = 9 - i;
             const number2 = number1.cloneNode(true);
-            number1.style.borderRight = "2px solid #0F0909"
-            app.board.appendChild(number1);
+            number1.style.borderRight = "2px solid"
+
+
+            setTimeout(() => {
+                document.querySelector('#numberC0').appendChild(number1);
+            }, ((i * 10 + i) * app.interval));
+
+
             // Boucle for des 8 cases pour une ligne
             for (x; x < y; x++) {
+
                 const boardCase = document.createElement('div');
                 // On utilise le Z ici, s'il est pair, alors case blanche, sinon elle est noire
                 if (z % 2 === 0) {
@@ -88,16 +109,31 @@ const app = {
                     boardCase.appendChild(clone);
                 }
                 boardCase.setAttribute("piece", boardData[x].name);
-                app.board.appendChild(boardCase);
+
+
+                setTimeout(() => {
+                    document.querySelector('#casesC').appendChild(boardCase); //!!!!!!!!
+                }, ((i * 10 + t) * app.interval));
+                // On incrémente t pour utiliser correctement le setTimeout
+                t++;
+
             }
             // L'incrément de Z "bonus" pour faire +9 à chaque ligne
             z++;
             // La dernière partie de la deuxième nombre
-            number2.style.borderLeft = "2px solid #0F0909"
-            app.board.appendChild(number2);
+            number2.style.borderLeft = "2px solid"
+
+
+            setTimeout(() => {
+                document.querySelector('#numberC1').appendChild(number2); //!!!!!!!!
+            }, ((i + 1) * 6) * app.interval);
+
+
         }
         // On appelle après que nos 1 + 8 lignes aient été créées de nouveau la fonction drawLetters pour faire la 10ème ligne avec cette fois le paramètre 1 qui servira à mettre les bordur-top
+        setTimeout(() => {
         app.drawLettersRow(1);
+        }, 80 * app.interval);
     },
 
     // Création de notre tableau de valeur, assez basique
