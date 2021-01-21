@@ -1,7 +1,8 @@
+/* * Nos variables de couleur toutes rassemblées */
 :root {
     --fond: #000000;
     --board-color-one: #acacac;
-    --board-color-two: #d41f1f;
+    --board-color-two: #3f3f3f;
     --pieces-border: #646464;
     --pieces-white: #e4e4e4;
     --pieces-black: #1a1a1a;
@@ -20,6 +21,7 @@ body {
     height: 704px;
     min-width: 704px;
     min-height: 704px;
+    border-radius: 10px;
 }
 
 .board,
@@ -32,9 +34,22 @@ body {
 
 .letterContainer {
     width: 640px;
-    height: 32px;
+    height: 30px;
     min-width: 640px;
-    min-height: 32px;
+    min-height: 30px;
+}
+
+[id*="letterC"] {
+    color: var(--board-color-one);
+    padding: 0 2px;
+}
+
+#letterC0 {
+    border-bottom: 2px solid;
+}
+
+#letterC1 {
+    border-top: 2px solid;
 }
 
 .numberContainer {
@@ -58,8 +73,8 @@ div {
 }
 
 .corner {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
 }
 
 .letter, .number, .case {

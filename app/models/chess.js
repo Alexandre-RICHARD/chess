@@ -3,6 +3,7 @@ const sequelize = require('../database');
 
 class Chess extends Sequelize.Model {};
 
+// Notr modele sequelize, tout ce qu'il y a de plus classique
 Chess.init({
     name: Sequelize.STRING,
     color: Sequelize.STRING,
