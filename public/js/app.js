@@ -2,7 +2,7 @@ const app = {
 
     // Nos variables qu'on veut globales
     base_URL: "http://localhost:3000",
-    interval: 35,
+    interval: 10,
     table: document.querySelector('.game_summary'),
     letters: ["A", "B", "C", "D", "E", "F", "G", "H"],
 

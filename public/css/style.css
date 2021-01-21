@@ -24,7 +24,8 @@ body {
 
 .board,
 .letterContainer,
-.numberContainer {
+.numberContainer,
+.casesContainer {
     display: flex;
     flex-wrap: wrap;
 }
@@ -44,8 +45,6 @@ body {
 }
 
 .casesContainer {
-    display: flex;
-    flex-wrap: wrap;
     width: 640px;
     height: 640px;
     min-width: 640px;
@@ -63,25 +62,23 @@ div {
     height: 32px;
 }
 
+.letter, .number, .case {
+    justify-content: center;
+    font-weight: 700;
+    font-size: 25px;
+    display: flex;
+    color: var(--board-color-one);
+}
+
 .letter {
     width: 80px;
     height: 30px;
-    font-weight: 700;
-    font-size: 25px;
-    color: var(--board-color-one);
-    display: flex;
-    justify-content: center;
 }
 
 .number {
     width: 30px;
     height: 55px;
-    font-weight: 700;
-    font-size: 25px;
     padding-top: 25px;
-    color: var(--board-color-one);
-    display: flex;
-    justify-content: center;
 }
 
 .case {
@@ -91,8 +88,6 @@ div {
     max-height: 80px;
     background-size: 100%;
     align-items: flex-end;
-    /* ! =========== !*/
-    justify-content: center;
 }
 
 .case--white {
@@ -103,18 +98,19 @@ div {
     background-color: var(--board-color-two);
 }
 
-.pieceColor--white {
+div[class*='pieceColor--'] {
     stroke-width: 25px;
-    color: var(--pieces-white);
-    stroke: var(--pieces-border);
     cursor: pointer;
 }
 
+.pieceColor--white {
+    color: var(--pieces-white);
+    stroke: var(--pieces-border);
+}
+
 .pieceColor--black {
-    stroke-width: 25px;
     color: var(--pieces-black);
     stroke: var(--pieces-border);
-    cursor: pointer;
 }
 
 .case svg {
