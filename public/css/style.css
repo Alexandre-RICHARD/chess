@@ -50,6 +50,7 @@ body {
 
 #letterC1 {
     border-top: 2px solid;
+    visibility: hidden;
 }
 
 .numberContainer {

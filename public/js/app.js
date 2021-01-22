@@ -61,8 +61,9 @@ const app = {
             letter.classList.add('letter');
             letter.textContent = app.letters[y];
             setTimeout(() => {
+                document.querySelector(`#letterC1`).style.visibility = 'visible';
                 document.querySelector(`#letterC1`).appendChild(letter);
-            }, (71 + y) * app.interval);
+            }, (81 + y) * app.interval);
         }
     },
 
