@@ -1,0 +1,26 @@
+Propriétés de la dame :
+
+
+Déplacement de la dame : 
+
+stop = 0
+counter 0
+
+Si la dame est vivante
+    alors 
+        while  x!=8 y=!8 ET stop !=1
+            si la case en X+Counter et Y+Counter est vide
+                add case
+                si  la case est occupé par l'adversaire
+                    alors stop = 1
+
+
+Refaire ça 8 fois avec :
+- X+ ; Y+
+- X+ ;
+- X+ ; Y-
+-    ; Y-
+- X- ; Y-
+- X- ;
+- X- ; Y+
+-    ; Y+

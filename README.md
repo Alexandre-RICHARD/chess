@@ -83,6 +83,8 @@ Et voilà
 - <span style="color:blue">Affichage du contrôle de chaque joueur</span>
 - <span style="color:green">Affichage particulier des pièces en cas de vitoires + animations ?</span>
 - <span style="color:red">Afficher un tableau dynamique sur la droite du jeu qui récapitulera tous les coup (avec mise en forme des coup lorsque MEURTRE)</span>
+- <span style="color:green">Enregistrer un nom pour chaque joueur, l'inscrire en base de donnée (unique avec mot de passe et il pourrait retrouver se sparties précédentes)</span>
+- <span style="color:green">En activant le mode DangerZone, survoler une case, mettrait en surbrillance les pièces responsables du contrôle</span>
 
 </details>
 
@@ -92,6 +94,11 @@ Et voilà
 <summary>Développer</summary>
 
 - Factoriser les deux doubles fonctions de création de lettres et de nombres
+- Régler la création de la couleur des cases avec la propriétés provenant de la DB
+- Intégrer un Id pour chaque case avec coordonnés
+- Changer l'id des pièces par "rb1"
+- Intégrer un vrai nom dans le DB pour les classes
+- Si CODE dans le back, a chaque déplacement, avant de bouger la pièce, faire une vérification que ce déplacement est légal (ne pas faire confiance à l'user et au JS front)
 
 </details>
 
@@ -147,7 +154,7 @@ Et voilà
 
 #### Le roi
   - Se déplace dans toutes les directions possibles d'une seule case à la fois
-  - Ne doit jamais être à moins de deux cases du roi adverse
+  - Ne doit jamais se déplacer dans une case contrôlée par l'adversaire
 
 #### La dame
   - Cumule déplacement en diagonale et en ligne. Ainsi, comme le roi, elle peut se déplacer dans les 8 directions, mais aussi loin qu'elle le veut (sauf rencontre)

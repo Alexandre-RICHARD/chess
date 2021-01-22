@@ -8,10 +8,9 @@ Chess.init({
     name: Sequelize.STRING,
     color: Sequelize.STRING,
     state: Sequelize.NUMBER,
-    pos_x: Sequelize.STRING,
+    pos_x: Sequelize.NUMBER,
     pos_y: Sequelize.NUMBER,
-    cell_color: Sequelize.STRING,
-    pawn_spec: Sequelize.NUMBER
+    cell_color: Sequelize.STRING
 }, {
     sequelize,
     tableName: "chess"

@@ -1,0 +1,37 @@
+Propriétés du pion : 
+PION.justMoveTwo: false,
+
+
+Déplacement du pion : 
+
+Si le pion est en vie > 
+    alors
+        Si le pion est toujours sur sa ligne de départ (2/7)
+            alors
+                Si la case devant lui est occupé par une pièce
+                                sinon
+                                    pion = case devant lui
+                                    si la case de deux plus loin occupé
+                                        alors = pion = static
+                                        sinon = pion += case deux plus loin
+            sinon
+                Si la case devant lui est libre
+                    alors 
+                        pion = case devant lui
+    sinon
+        Renvoyer un objet vide (ou pas d'objet au choix)
+Fin du Si
++
+Si case devant lui à gauche = pièce adverse
+    alors pion += cette case
++
+Si case devant lui à droite = pièce adverse
+    alors pion += cette case
++ 
+Si la case a gauche contient un pion qui a son "justMoveTwo.true"
+    alors pion += case en diagonale gauche
+    ET rajouter une fonction qui va tuer la pièce à gauche
++    
+Si la case a droite contient un pion qui a son "justMoveTwo.true"
+    alors pion += case en diagonale droite
+    ET rajouter une fonction qui va tuer la pièce à droite

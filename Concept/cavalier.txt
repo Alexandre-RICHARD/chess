@@ -1,0 +1,23 @@
+Propriétés du pion : 
+
+
+Déplacement du cavalier :
+
+    [
+    {X+2 ; Y+1},
+    {X+2 ; Y-1},
+    {X-2 ; Y+1},
+    {X-2 ; Y-1},
+    {X+1 ; Y-2},
+    {X-1 ; Y-2},
+    {X+1 ; Y+2},
+    {X-1 ; Y+2}
+    ]
+Si le cavalier est en vie > 
+    alors
+        tableau.forEach   
+            si la case existe ET n'est pas occupé par une pièce de même couleur
+                alors cavalier + cette case
+    sinon
+        Renvoyer un objet vide (ou pas d'objet au choix)
+Fin du Si

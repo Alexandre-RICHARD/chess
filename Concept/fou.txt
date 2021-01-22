@@ -1,0 +1,14 @@
+Propriétés du fou :
+
+
+Déplacement du fou : 
+stop = 0
+counter = 1
+while x!= 8 ET Y!=8 OU stop !=1
+    Si la case en X+Counter et Y+counter n'est pas occupé par une pièce de même couleur
+        add case
+            Si cette case est occupé par une pièce adverse 
+                stop = 1;
+
+
+Faire ça quatre fois avec combinaison de X+ Y+ ; X- Y+ ; X- Y- et X+ Y-
