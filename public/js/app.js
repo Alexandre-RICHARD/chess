@@ -24,10 +24,8 @@ const app = {
         <div id="letterC1" class="letterContainer"></div>
         <div class="corner"></div>
         `;
-        app.drawLettersOne();
-        app.drawLettersTwo();
-        app.drawNumbersOne();
-        app.drawNumbersTwo();
+        app.drawLetters();
+        app.drawNumbers();
         app.getBoardData().then(app.drawCases);
         app.table.innerHTML = '';
         app.getBoardData().then(app.fillTable);
@@ -44,51 +42,42 @@ const app = {
         }
     },
 
-    // Pour créer nos deux lignes de lettres, c'est overkill d'utiliser deux fonction quasi identiques (différente au setTimeout) et il ya sûrement un grosse optimisation possible
-    drawLettersOne: () => {
-        for (let y = 0; y < 8; y++) {
-            const letter = document.createElement('div');
-            letter.classList.add('letter');
-            letter.textContent = app.letters[y];
-            setTimeout(() => {
-                document.querySelector(`#letterC0`).appendChild(letter);
-            }, (1 + y) * app.interval);
-        }
-    },
-    drawLettersTwo: () => {
-        for (let y = 0; y < 8; y++) {
-            const letter = document.createElement('div');
-            letter.classList.add('letter');
-            letter.textContent = app.letters[y];
-            setTimeout(() => {
-                document.querySelector(`#letterC1`).style.visibility = 'visible';
-                document.querySelector(`#letterC1`).appendChild(letter);
-            }, (81 + y) * app.interval);
+    // Pour créer nos deux lignes de lettres
+
+    drawLetters: () => {
+        for (let x = 0; x < 2; x++) {
+            for (let y = 0; y < 8; y++) {
+                const letter = document.createElement('div');
+                letter.classList.add('letter');
+                letter.textContent = app.letters[y];
+                setTimeout(() => {
+                    if (x === 0) {
+                        letter.style.borderBottom = "2px solid"
+                    } else {
+                        letter.style.borderTop = "2px solid"
+                    }
+                    document.querySelector(`#letterC${x}`).appendChild(letter);
+                }, (x * 70 + y) * app.interval);
+            }
         }
     },
 
-    // Pour créer nos deux colonnes de nombres, c'est overkill d'utiliser deux fonction quasi identiques (différente au setTimeout) et il ya sûrement un grosse optimisation possible
-    drawNumbersOne: () => {
-        for (let y = 0; y < 8; y++) {
-            const number = document.createElement('div');
-            number.classList.add('number');
-            number.textContent = 8 - y;
-            number.style.borderRight = "2px solid"
-            setTimeout(() => {
-                document.querySelector(`#numberC0`).appendChild(number);
-            }, (y * 10 + 1) * app.interval);
-        }
-    },
-
-    drawNumbersTwo: () => {
-        for (let y = 0; y < 8; y++) {
-            const number = document.createElement('div');
-            number.classList.add('number');
-            number.textContent = 8 - y;
-            number.style.borderLeft = "2px solid"
-            setTimeout(() => {
-                document.querySelector(`#numberC1`).appendChild(number);
-            }, (y * 10 + 9) * app.interval);
+    // Pour créer nos deux colonnes de nombres
+    drawNumbers: () => {
+        for (let x = 0; x < 2; x++) {
+            for (let y = 0; y < 8; y++) {
+                const number = document.createElement('div');
+                number.classList.add('number');
+                number.textContent = 8 - y;
+                if (x === 0) {
+                    number.style.borderRight = "2px solid"
+                } else {
+                    number.style.borderLeft = "2px solid"
+                }
+                setTimeout(() => {
+                    document.querySelector(`#numberC${x}`).appendChild(number);
+                }, (y * 10 + 1 + 8 * x) * app.interval);
+            }
         }
     },
 

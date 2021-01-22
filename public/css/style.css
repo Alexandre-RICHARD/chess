@@ -33,24 +33,14 @@ body {
 }
 
 .letterContainer {
-    width: 640px;
-    height: 30px;
-    min-width: 640px;
-    min-height: 30px;
+    width: 644px;
+    height: 32px;
+    min-width: 644px;
+    min-height: 32px;
 }
 
-[id*="letterC"] {
-    color: var(--board-color-one);
-    padding: 0 2px;
-}
-
-#letterC0 {
-    border-bottom: 2px solid;
-}
-
-#letterC1 {
-    border-top: 2px solid;
-    visibility: hidden;
+.letter:nth-child(1), .letter:nth-child(8), .letter:nth-child(9), .letter:nth-child(16) {
+    padding-left: 1.95px;
 }
 
 .numberContainer {
