@@ -85,6 +85,7 @@ Et voilà
 - <span style="color:red">Afficher un tableau dynamique sur la droite du jeu qui récapitulera tous les coup (avec mise en forme des coup lorsque MEURTRE)</span>
 - <span style="color:green">Enregistrer un nom pour chaque joueur, l'inscrire en base de donnée (unique avec mot de passe et il pourrait retrouver se sparties précédentes)</span>
 - <span style="color:green">En activant le mode DangerZone, survoler une case, mettrait en surbrillance les pièces responsables du contrôle</span>
+- <span style="color:blue">Intégrer une règle dans la page</span>
 
 </details>
 

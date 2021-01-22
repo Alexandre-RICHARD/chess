@@ -1,6 +1,4 @@
-    En état d'échec, il faut faire passer un test à la projection de chaque mouvement renvoyé. SI on a 215 mouvements possibles, on ne garde que ceux qui enlève l'état d'échecs. S'il n'y en a aucun, alors c'est échec et mat. 
-
-    Ou vérifier les 3 conditions, ça revient au même et semble moins couteux en processus et en cerveau
+    Ou vérifier les 3 conditions
 
     Pour vérifier le check-mate, on doit lancer une projection de nos pièces sur les 8 cases autour du roi, les pièces adverses qui menacent le roi et les potentiels cases qui sépare ces pièces du roi
         - Soit l'une de mes pièces peut s'interposer donc parmi les cases possibles se trouvent le chemin de la pièce menaçante.
@@ -11,11 +9,8 @@
 
         A priori, la seule projection à faire est celle de toutes les pièces ennemis si le roi mange une autre pièce. Il faudra vérifier que cette case (sous la pièce), n'est pas en danger-zone.
 
-est-ce que le roi et les tour ont déjà bougé
-roi => echec + déplacement ?
-
 board : [
-    case: {
+    caseXY: {
         x: ,
         y: ,
         caseColor: ,
@@ -32,6 +27,8 @@ board : [
 
             PROPRIETE SPECIALE {
                 PION.justMoveTwo: false,
+                TOUR.arleadyMoved: false,
+                ROI.alreadyMoved: false,
 
             }
 
@@ -62,20 +59,11 @@ gameActive: {
         movedPlayed: ,
         timePlayed: ,
     },
-}
-
-game: [
-    gameSummary: {
-        playerOneName: ,
-        playerOneColor: ,
-        playerTwoName: ,
-        playerTwoColor: ,
-    },
-    moveX {
+        moveX {
         playerColor: ,
         killingmove: false,
         piece: tw1, pb8, (tour white 1; pion black 8);
         origin: ,
         destination: ,
-    }
-],
+    },
+}
