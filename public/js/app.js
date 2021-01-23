@@ -10,9 +10,18 @@ const app = {
         // Obliger de décaler la sélection des cases à cause de tout les délai. Peut-être que je les retirerai
         setTimeout(() => {
             casesSelectionandMoves.putEventOnCases();
-            casesSelectionandMoves.getMoveData();
         }, 80 * createBoardandTable.interval);
-    }
+        casesSelectionandMoves.getMoveData();
+        document.querySelector('#testing-reset-button').addEventListener('click', app.testingResetButton);
+    },
+
+    async testingResetButton() {
+        try {
+            await fetch(app.base_URL + '/game/reset');
+        } catch (error) {
+            console.trace(error);
+        }
+    },
 
 }
 
