@@ -1,29 +1,9 @@
-Si c'est un pion noir
-    Si case d'origine
-        alors
-        Si la case devant lui est libre par une pièce
-            alors CASE++;
-            SI case 2 devant lui est libre
-                alors CASE++;
-        sinon
-            Si la case devant lui est libre
-                alors CASE++;
-    FIN SI
-    +
-    Si case devant lui à gauche = pièce adverse
-        alors CASE++;
-    +
-    Si case devant lui à droite = pièce adverse
-        alors CASE++;
-    + 
-    Si la case a gauche contient un pion qui a son "justMoveTwo.true"
-        alors CASE++;
-        ET rajouter une fonction qui va tuer la pièce à gauche (ça pourrait être une micro-properti dans l'objet de cette pièce);
-    +    
-    Si la case a droite contient un pion qui a son "justMoveTwo.true"
-        alors CASE++;
-        ET rajouter une fonction qui va tuer la pièce à droite (ça pourrait être une micro-properti dans l'objet de cette pièce);
+PION Noir fait
 
-FIN SI
-
-    Refaire mais avec pion blanc (boucle for 0 à 1 peut-être)
+Pour faire les blancs, les différences sont :
+- le if piece_color = black du début
+- if piece_y = 7 pour la première ligne
+- le const casey1 avec y - 1 (ou y - 2)
+- l'insertion dans l'objet avec blackPiecesMoves
+- la couleur dans le if  des 4 derniers
+- le destination case y - 1 en black sera y + 1 en white

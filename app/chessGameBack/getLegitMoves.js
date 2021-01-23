@@ -1,37 +1,79 @@
 const getLegitMoves = {
 
-    Allmoves: {},
+    Allmoves: {
+        blackPiecesMoves: {},
+        whitePiecesMoves: {},
+    },
 
     pawnMoves: (boardData) => {
-        const casesToAdd = {};
         const pieces = boardData.filter(element => element.piece_name === "pawn");
         pieces.forEach(piece => {
-            if (piece.piece_color === "black" && piece.y === 7) {
-                const case1 = boardData.find(element => element.y === piece.y - 1 && element.x === piece.x)
-                if (case1.piece_name === null) {
-                    // casesToAdd.`${}`
-                    if (true) {
-
+            if (piece.piece_color === "black") {
+                getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`] = {}
+                let moveCounter = 1;
+                if (piece.y === 7) {
+                    const casey1 = boardData.find(element => element.x === piece.x && element.y === piece.y - 1)
+                    if (casey1.piece_name === null) {
+                        getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                            originCase: `${piece.x}${piece.y}`,
+                            destinationCase: `${casey1.x}${casey1.y}`,
+                            killingMove: false,
+                        }
+                        moveCounter++;
+                        const casey2 = boardData.find(element => element.x === piece.x && element.y === piece.y - 2)
+                        if (casey2.piece_name === null) {
+                            getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                                originCase: `${piece.x}${piece.y}`,
+                                destinationCase: `${casey2.x}${casey2.y}`,
+                                killingMove: false,
+                            }
+                            moveCounter++;
+                        }
+                    }
+                } else {
+                    const casey3 = boardData.find(element => element.x === piece.x && element.y === piece.y - 1)
+                    if (casey3.piece_name === null) {
+                        getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                            originCase: `${piece.x}${piece.y}`,
+                            destinationCase: `${casey3.x}${casey3.y}`,
+                            killingMove: false,
+                        }
                     }
                 }
-            } else {
-                if (true) {
-
-                }
-            }
-            if (piece.piece_color === "white" && piece.y === 2) {
-                if (true) {
-                    if (true) {
-
+                const casexy1 = boardData.find(element => element.x === piece.x - 1 && element.y === piece.y - 1)
+                if (casexy1.piece_color === "white") {
+                    getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                        originCase: `${piece.x}${piece.y}`,
+                        destinationCase: `${casexy1.x}${casexy1.y}`,
+                        killingMove: true,
                     }
                 }
-            } else {
-                if (true) {
-
+                const casexy2 = boardData.find(element => element.x === piece.x + 1 && element.y === piece.y - 1)
+                if (casexy2.piece_color === "white") {
+                    getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                        originCase: `${piece.x}${piece.y}`,
+                        destinationCase: `${casexy2.x}${casexy2.y}`,
+                        killingMove: true,
+                    }
+                }
+                const casex1 = boardData.find(element => element.x === piece.x - 1 && element.y === piece.y)
+                if (casex1.piece_color === "white" && casex1.pawn_just_move_two === true) {
+                    getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                        originCase: `${piece.x}${piece.y}`,
+                        destinationCase: `${casex1.x}${casex1.y - 1}`,
+                        killingMove: true,
+                    }
+                }
+                const casex2 = boardData.find(element => element.x === piece.x + 1 && element.y === piece.y)
+                if (casex2.piece_color === "white" && casex2.pawn_just_move_two === true) {
+                    getLegitMoves.Allmoves.blackPiecesMoves[`${piece.piece_id}`][moveCounter] = {
+                        originCase: `${piece.x}${piece.y}`,
+                        destinationCase: `${casex2.x}${casex2.y - 1}`,
+                        killingMove: true,
+                    }
                 }
             }
         });
-        getLegitMoves.Allmoves.pawn = {};
     },
 
     rookMoves: (boardData) => {
@@ -39,7 +81,6 @@ const getLegitMoves = {
         pieces.forEach(piece => {
 
         });
-        getLegitMoves.Allmoves.rook = {};
     },
 
     knightMoves: (boardData) => {
@@ -47,7 +88,6 @@ const getLegitMoves = {
         pieces.forEach(piece => {
 
         });
-        getLegitMoves.Allmoves.knight = {};
     },
 
     bishopMoves: (boardData) => {
@@ -55,7 +95,6 @@ const getLegitMoves = {
         pieces.forEach(piece => {
 
         });
-        getLegitMoves.Allmoves.bishop = {};
     },
 
     queenMoves: (boardData) => {
@@ -63,7 +102,6 @@ const getLegitMoves = {
         pieces.forEach(piece => {
 
         });
-        getLegitMoves.Allmoves.queen = {};
     },
 
     kingMoves: (boardData) => {
@@ -71,7 +109,6 @@ const getLegitMoves = {
         pieces.forEach(piece => {
 
         });
-        getLegitMoves.Allmoves.king = {};
     },
 
     getAllMoves: (boardData) => {

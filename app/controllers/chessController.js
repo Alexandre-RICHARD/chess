@@ -4,11 +4,11 @@ const getLegitMoves = require('../chessGameBack/getLegitMoves');
 const chessController = {
 
     boardData: {},
+    cimetary: {},
 
     getBoardData: (req, res) => {
         if (Object.keys(chessController.boardData).length !== 0) {
             res.json(chessController.boardData);
-            console.log(`L'objet boardData fait ${Object.keys(chessController.boardData).length} de longueur`);
         } else {
             res.json('L\'objet boardData est vide')
         }
