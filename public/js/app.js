@@ -127,7 +127,11 @@ const app = {
             const tr2 = document.createElement('tr')
             for (const key in element) {
                 const td = document.createElement('td');
+                if (element[key] !== null) {
                 td.textContent = element[key];
+                } else {
+                    td.classList.add('emptyTD');
+                }
                 tr2.appendChild(td);
             }
             tbody.appendChild(tr2);
