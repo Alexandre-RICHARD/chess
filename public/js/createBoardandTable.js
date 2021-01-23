@@ -5,22 +5,24 @@ const createBoardandTable = {
 
     // Fonction pour créer l'échiquier et la table, c'est quasiment une fonction proxy
     drawBoardandTable: () => {
-        document.querySelector('.board').innerHTML = `
-            <div class="corner"></div>
-            <div id="letterC0" class="letterContainer"></div>
-            <div class="corner"></div>
-            <div id="numberC0" class="numberContainer"></div>
-            <div id="casesC" class="casesContainer"></div>
-            <div id="numberC1" class="numberContainer"></div>
-            <div class="corner"></div>
-            <div id="letterC1" class="letterContainer"></div>
-            <div class="corner"></div>
-            `;
-        createBoardandTable.drawLetters();
-        createBoardandTable.drawNumbers();
-        createBoardandTable.getBoardData().then(createBoardandTable.drawCases);
-        createBoardandTable.table.innerHTML = '';
-        createBoardandTable.getBoardData().then(createBoardandTable.fillTable);
+        createBoardandTable.getBoardData().then((boardData) => {
+            document.querySelector('.board').innerHTML = `
+                <div class="corner"></div>
+                <div id="letterC0" class="letterContainer"></div>
+                <div class="corner"></div>
+                <div id="numberC0" class="numberContainer"></div>
+                <div id="casesC" class="casesContainer"></div>
+                <div id="numberC1" class="numberContainer"></div>
+                <div class="corner"></div>
+                <div id="letterC1" class="letterContainer"></div>
+                <div class="corner"></div>
+                `;
+            createBoardandTable.drawLetters();
+            createBoardandTable.drawNumbers();
+            createBoardandTable.drawCases(boardData);
+            createBoardandTable.table.innerHTML = '';
+            createBoardandTable.fillTable(boardData);
+        })
     },
 
     // Récupération des données en AJAX avec fetch
