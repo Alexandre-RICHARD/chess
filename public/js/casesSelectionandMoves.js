@@ -21,6 +21,7 @@ const casesSelectionandMoves = {
         casesSelectionandMoves.getCasesWithPieces().forEach(element => {
             element.addEventListener('click', casesSelectionandMoves.select, false);
         })
+        console.log(casesSelectionandMoves.moveDataObject)
     },
 
     select: (event) => {

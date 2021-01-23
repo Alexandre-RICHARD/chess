@@ -1,34 +1,34 @@
-const {
-    Chess
-} = require('../models/index');
+const { Chess } = require('../models/index');
+const getLegitMoves = require('../chessGameBack/getLegitMoves');
 
 const chessController = {
 
     boardData: {},
-    movesData: {},
 
     getBoardData: (req, res) => {
-        if (Object.keys(this.boardData).length !== 0) {
-            console.log(Object.keys(this.boardData).length);
-            res.json(this.boardData);
+        if (Object.keys(chessController.boardData).length !== 0) {
+            res.json(chessController.boardData);
+            console.log(Object.keys(chessController.boardData).length);
         } else {
             console.log('L\'objet data est vide');
         }
     },
 
     getMoveData: async (req, res) => {
-        if (Object.keys(this.movesData).length !== 0) {
-            console.log(Object.keys(this.boardData).length);
-            res.json(this.movesData);
+        const movesData = getLegitMoves.getAllMoves(chessController.boardData);
+        if (Object.keys(movesData).length !== 0) {
+            res.json(movesData);
+            console.log(Object.keys(movesData).length);
         } else {
             console.log('L\'objet data est vide');
         }
     },
 
     resetData: async (req, res) => {
+        console.log('Le reset se fait');
         try {
             const data = await Chess.findAll({});
-            this.boardData = data;
+            chessController.boardData = data;
         } catch (error) {
             console.trace(error);
             res.status(500).json(error.toString());

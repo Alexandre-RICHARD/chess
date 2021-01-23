@@ -7,20 +7,23 @@ const app = {
     // Notre initialisation : créer l'échiquier et la table
     init: () => {
         createBoardandTable.drawBoardandTable();
-        // Obliger de décaler la sélection des cases à cause de tout les délai. Peut-être que je les retirerai
         setTimeout(() => {
             casesSelectionandMoves.putEventOnCases();
         }, 80 * createBoardandTable.interval);
         casesSelectionandMoves.getMoveData();
-        document.querySelector('#testing-reset-button').addEventListener('click', app.testingResetButton);
+        document.querySelector('#testing-reset-button').addEventListener('click', app.resetData);
+        app.reset = 1;
     },
-
-    async testingResetButton() {
+    // window.location.reload()
+    
+    async resetData() {
+        document.querySelector('#testing-reset-button').removeEventListener('click', app.resetData);
         try {
             await fetch(app.base_URL + '/game/reset');
         } catch (error) {
             console.trace(error);
         }
+
     },
 
 }
