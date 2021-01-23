@@ -8,9 +8,9 @@ const chessController = {
     getBoardData: (req, res) => {
         if (Object.keys(chessController.boardData).length !== 0) {
             res.json(chessController.boardData);
-            console.log(Object.keys(chessController.boardData).length);
+            console.log(`L'objet boardData fait ${Object.keys(chessController.boardData).length} de longueur`);
         } else {
-            console.log('L\'objet data est vide');
+            console.log('L\'objet boardData est vide');
         }
     },
 
@@ -18,7 +18,7 @@ const chessController = {
         const movesData = getLegitMoves.getAllMoves(chessController.boardData);
         if (Object.keys(movesData).length !== 0) {
             res.json(movesData);
-            console.log(Object.keys(movesData).length);
+            console.log(`L'objet movesData fait ${Object.keys(movesData).length} de longueur`);
         } else {
             console.log('L\'objet data est vide');
         }
@@ -29,6 +29,7 @@ const chessController = {
         try {
             const data = await Chess.findAll({});
             chessController.boardData = data;
+            res.json('tuc');
         } catch (error) {
             console.trace(error);
             res.status(500).json(error.toString());

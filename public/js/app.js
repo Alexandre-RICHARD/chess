@@ -14,12 +14,11 @@ const app = {
         document.querySelector('#testing-reset-button').addEventListener('click', app.resetData);
         app.reset = 1;
     },
-    // window.location.reload()
     
     async resetData() {
-        document.querySelector('#testing-reset-button').removeEventListener('click', app.resetData);
         try {
             await fetch(app.base_URL + '/game/reset');
+            document.location.reload()
         } catch (error) {
             console.trace(error);
         }
