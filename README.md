@@ -94,12 +94,8 @@ Et voilà
 <details>
 <summary>Développer</summary>
 
-- Factoriser les deux doubles fonctions de création de lettres et de nombres
-- Régler la création de la couleur des cases avec la propriétés provenant de la DB
-- Intégrer un Id pour chaque case avec coordonnés
-- Changer l'id des pièces par "rb1"
-- Intégrer un vrai nom dans le DB pour les classes
 - Si CODE dans le back, a chaque déplacement, avant de bouger la pièce, faire une vérification que ce déplacement est légal (ne pas faire confiance à l'user et au JS front)
+- Le fichier app/chessGame/originData.js n'est pas exactement conforme à ma BDD (l'histoire des null);
 
 </details>
 
