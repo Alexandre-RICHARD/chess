@@ -1,7 +1,7 @@
 const createBoardandTable = {
 
     table: document.querySelector('.game_summary'), //? Pour stocker l'emplacement de notre table
-    interval: 10, //? L'intervalle utilisé pour tous les setTimeout
+    interval: 6, //? L'intervalle utilisé pour tous les setTimeout
 
     // Fonction pour créer l'échiquier et la table, c'est quasiment une fonction proxy
     drawBoardandTable: () => {
@@ -45,12 +45,12 @@ const createBoardandTable = {
                 const letter = document.createElement('div');
                 letter.classList.add('letter');
                 letter.textContent = lettersStock[y];
+                if (x === 0) {
+                    letter.style.borderBottom = "2px solid"
+                } else {
+                    letter.style.borderTop = "2px solid"
+                }
                 setTimeout(() => {
-                    if (x === 0) {
-                        letter.style.borderBottom = "2px solid"
-                    } else {
-                        letter.style.borderTop = "2px solid"
-                    }
                     document.querySelector(`#letterC${x}`).appendChild(letter);
                 }, (x * 70 + y) * createBoardandTable.interval);
             }
@@ -84,17 +84,16 @@ const createBoardandTable = {
                 const ourCase = boardData[x * 8 + y];
                 const boardCase = document.createElement('div');
                 if (z % 2 === 0) { //? On utilise donc Z en vérifiant sa propriété à être pair
-                    boardCase.classList.add('case', 'case--white')
+                    boardCase.classList.add('case', 'case--w')
                 } else {
-                    boardCase.classList.add('case', 'case--black')
+                    boardCase.classList.add('case', 'case--b')
                 }
                 z++; //? Incrémentation de 1 * 8 par ligne de Z
                 boardCase.id = `${ourCase.x}${ourCase.y}`
                 // Cette partie est un peu imbitable, donc en gros, si l'objet de boardData avec l'index X comporte une pièce, donc avec un nom différent de none, alors, on lui ajoute deux classes (couleur de la pièce, type de pièce), on lui clone et appendChild le SVG correspondant à son type et on lui donne un attribut avec le nom de la pièce et un "faux id".
                 if (ourCase.piece_name !== null) {
-                    boardCase.classList.add(`pieceColor--${ourCase.piece_color}`, `${ourCase.piece_name}`);
+                    boardCase.classList.add(`pC--${ourCase.piece_color}`, `${ourCase.piece_name}`);
                     const clone = document.importNode(document.querySelector(`#${ourCase.piece_name}`).content, true);
-                    clone.querySelector('svg').classList.add(`${ourCase.piece_name}`);
                     boardCase.appendChild(clone);
                     boardCase.setAttribute("piece_id", ourCase.piece_id);
                 }

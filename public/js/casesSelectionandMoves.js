@@ -1,32 +1,50 @@
 const casesSelectionandMoves = {
 
-    initEventCase: () => {
-        const cases = document.querySelectorAll('.case');
-        cases.forEach(tempCase => {
-            if (app.test()[tempCase.id - 1].name !== 'none') {
-                tempCase.addEventListener('click', app.select);
-            }
-        })
+    moveDataObject: {},
+
+    async getMoveData() {
+        try {
+            let data = await fetch(app.base_URL + '/move/data');
+            let moveData = await data.json();
+            casesSelectionandMoves.moveDataObject = moveData;
+        } catch (error) {
+            console.trace(error);
+        }
+    },
+
+    getCasesWithPieces: () => {
+        const cases = document.querySelectorAll("#casesC [piece_id]");
         return cases;
+    },
+
+    putEventOnCases: () => {
+        casesSelectionandMoves.getCasesWithPieces().forEach(element => {
+            element.addEventListener('click', casesSelectionandMoves.select, false);
+        })
     },
 
     select: (event) => {
         const selectedCase = event.target;
         console.log(selectedCase);
         selectedCase.classList.add('selectedCase');
+        if (document.querySelector('.selectedCase')) {
+            casesSelectionandMoves.getCasesWithPieces().forEach(element => {
+                element.removeEventListener('click', casesSelectionandMoves.select, false);
+            })
+        }
+        casesSelectionandMoves.showPossibleMove(casesSelectionandMoves)
+        selectedCase.addEventListener('click', casesSelectionandMoves.deselect, false);
+    },
 
-        const cases = app.initEventCase();
-        cases.forEach(tempCase => {
-            tempCase.removeEventListener('click', app.select);
-        })
+    showPossibleMove: () => {
 
-        selectedCase.addEventListener('click', app.deselect);
     },
 
     deselect: (event) => {
         const deselectedCase = event.target;
+        deselectedCase.removeEventListener('click', casesSelectionandMoves.deselect, false);
         deselectedCase.classList.remove('selectedCase');
-        app.initEventCase();
+        casesSelectionandMoves.putEventOnCases();
     },
 
 }

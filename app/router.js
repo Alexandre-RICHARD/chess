@@ -5,5 +5,7 @@ const router = Router();
 const chessController = require('./controllers/chessController');
 
 router.get('/board/data', chessController.getBoardData);
+router.get('/move/data', chessController.getMoveData);
+router.get('/game/reset', chessController.resetData);
 
 module.exports = router;

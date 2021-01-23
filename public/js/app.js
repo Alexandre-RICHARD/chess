@@ -7,9 +7,13 @@ const app = {
     // Notre initialisation : créer l'échiquier et la table
     init: () => {
         createBoardandTable.drawBoardandTable();
+        // Obliger de décaler la sélection des cases à cause de tout les délai. Peut-être que je les retirerai
+        setTimeout(() => {
+            casesSelectionandMoves.putEventOnCases();
+            casesSelectionandMoves.getMoveData();
+        }, 80 * createBoardandTable.interval);
     }
 
 }
-
 
 document.addEventListener('DOMContentLoaded', app.init);

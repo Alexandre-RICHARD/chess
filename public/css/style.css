@@ -1,11 +1,11 @@
 /* * Nos variables de couleur toutes rassemblées */
 :root {
     --fond: #000000;
-    --board-color-one: #acacac;
-    --board-color-two: #3f3f3f;
+    --board-color-one: #c2c2c2;
+    --board-color-two: #3b3b3b;
+    --pieces-white: #ffd700;
+    --pieces-black: #310404;
     --pieces-border: #646464;
-    --pieces-white: #e4e4e4;
-    --pieces-black: #1a1a1a;
 }
 
 body {
@@ -96,25 +96,25 @@ div {
     align-items: flex-end;
 }
 
-.case--white {
+.case--w {
     background-color: var(--board-color-one);
 }
 
-.case--black {
+.case--b {
     background-color: var(--board-color-two);
 }
 
-div[class*='pieceColor--'] {
+div[class*='pC--'] {
     stroke-width: 25px;
     cursor: pointer;
 }
 
-.pieceColor--white {
+.pC--white {
     color: var(--pieces-white);
     stroke: var(--pieces-border);
 }
 
-.pieceColor--black {
+.pC--black {
     color: var(--pieces-black);
     stroke: var(--pieces-border);
 }
@@ -142,7 +142,7 @@ div[class*='pieceColor--'] {
 }
 
 
-/* .case.selectedCase {
+.selectedCase {
     width: 74px;
     height: 74px;
     background-size: 85px;
@@ -152,7 +152,7 @@ div[class*='pieceColor--'] {
     border-radius: 5px;
 }
 
-.case.possibleCase {
+.possibleCase {
     width: 74px;
     height: 74px;
     background-size: 85px;
@@ -160,7 +160,11 @@ div[class*='pieceColor--'] {
     background-color: rgb(136, 114, 73);
     border: 3px solid rgb(95, 80, 51);
     border-radius: 5px;
-} */
+}
+
+.unclickable {
+    pointer-events: none;
+}
 
 
 

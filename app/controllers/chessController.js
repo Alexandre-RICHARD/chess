@@ -16,5 +16,13 @@ const chessController = {
         }
     },
 
+    getMoveData: async (req, res) => {
+
+    },
+
+    resetData: async (req, res) => {
+
+    },
+
 }
 module.exports = chessController;
