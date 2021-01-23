@@ -93,13 +93,14 @@ const app = {
                     boardCase.classList.add('case', 'case--black')
                 }
                 z++; //? Incrémentation de 1 * 8 par ligne de Z
+                boardCase.id = `${boardData[x * 8 + y].x}${boardData[x * 8 + y].y}`
                 // Cette partie est un peu imbitable, donc en gros, si l'objet de boardData avec l'index X comporte une pièce, donc avec un nom différent de none, alors, on lui ajoute deux classes (couleur de la pièce, type de pièce), on lui clone et appendChild le SVG correspondant à son type et on lui donne un attribut avec le nom de la pièce et un "faux id".
-                if (boardData[x * 8 + y].name.split('_')[0] !== "none") {
-                    boardCase.classList.add(`pieceColor--${boardData[x*8+y].color}`, `${boardData[x*8+y].name.split('_')[0]}`);
-                    const clone = document.importNode(document.querySelector(`#${boardData[x*8+y].name.split('_')[0]}`).content, true);
-                    clone.querySelector('svg').classList.add(`${boardData[x*8+y].name.split('_')[0]}`);
+                if (boardData[x * 8 + y].piece_name !== null) {
+                    boardCase.classList.add(`pieceColor--${boardData[x*8+y].piece_color}`, `${boardData[x * 8 + y].piece_name}`);
+                    const clone = document.importNode(document.querySelector(`#${boardData[x * 8 + y].piece_name}`).content, true);
+                    clone.querySelector('svg').classList.add(`${boardData[x * 8 + y].piece_name}`);
                     boardCase.appendChild(clone);
-                    boardCase.setAttribute("piece", boardData[x * 8 + y].name);
+                    boardCase.setAttribute("piece_id", boardData[x * 8 + y].piece_id);
                 }
                 setTimeout(() => {
                     document.querySelector('#casesC').appendChild(boardCase);
