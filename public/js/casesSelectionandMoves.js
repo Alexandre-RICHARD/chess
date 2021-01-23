@@ -21,7 +21,7 @@ const casesSelectionandMoves = {
         casesSelectionandMoves.getCasesWithPieces().forEach(element => {
             element.addEventListener('click', casesSelectionandMoves.select, false);
         })
-        console.log(casesSelectionandMoves.moveDataObject)
+        console.log(casesSelectionandMoves.moveDataObject);
     },
 
     select: (event) => {
@@ -33,7 +33,7 @@ const casesSelectionandMoves = {
                 element.removeEventListener('click', casesSelectionandMoves.select, false);
             })
         }
-        casesSelectionandMoves.showPossibleMove(casesSelectionandMoves)
+        casesSelectionandMoves.showPossibleMove(casesSelectionandMoves);
         selectedCase.addEventListener('click', casesSelectionandMoves.deselect, false);
     },
 

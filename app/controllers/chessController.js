@@ -10,7 +10,7 @@ const chessController = {
             res.json(chessController.boardData);
             console.log(`L'objet boardData fait ${Object.keys(chessController.boardData).length} de longueur`);
         } else {
-            console.log('L\'objet boardData est vide');
+            res.json('L\'objet boardData est vide')
         }
     },
 

@@ -8,3 +8,22 @@
         En cas d'échec double (Donc si la case du roi se retrouve deux fois dans le tableau des cases contrôlée adverse, alors on ne vérifie que les déplacement du roi en safe-zone)
 
         A priori, la seule projection à faire est celle de toutes les pièces ennemis si le roi mange une autre pièce. Il faudra vérifier que cette case (sous la pièce), n'est pas en danger-zone.
+
+
+
+ Un truc genre
+Pion noir + Pion blanc (un objet avec leur move)
+
+Rook noir + Rook blanc (un objet avec tous leur move)
+
+Knight noir + Knight blanc (renvoyer un objet avec tout leur coup)
+
+Bishop noir + bishop blanc (renvoyer un objet avec tout leur coup)
+
+Queen Noire + Queen Blanche (renvoyer un objet avec tout leur coup)
+
+TRICHER en renvoyant un faux objet avec toutes les cases contrôlées par les rois.
+
+CHANGER le tableau board (donc les caseControl by)
+
+Faire les déplacements du roi ainsi que le rook

@@ -6,13 +6,35 @@ const app = {
 
     // Notre initialisation : créer l'échiquier et la table
     init: () => {
-        createBoardandTable.drawBoardandTable();
-        setTimeout(() => {
-            casesSelectionandMoves.putEventOnCases();
-        }, 80 * createBoardandTable.interval);
-        casesSelectionandMoves.getMoveData();
+
+        createBoardandTable.getBoardData().then((boardData) => {
+            console.log(boardData);
+            if (boardData === "L'objet boardData est vide") {
+                console.log('Reset nécessaire')
+            } else {
+                document.querySelector('.board').innerHTML = `
+                    <div class="corner"></div>
+                    <div id="letterC0" class="letterContainer"></div>
+                    <div class="corner"></div>
+                    <div id="numberC0" class="numberContainer"></div>
+                    <div id="casesC" class="casesContainer"></div>
+                    <div id="numberC1" class="numberContainer"></div>
+                    <div class="corner"></div>
+                    <div id="letterC1" class="letterContainer"></div>
+                    <div class="corner"></div>
+                    `;
+                createBoardandTable.drawLetters();
+                createBoardandTable.drawNumbers();
+                createBoardandTable.drawCases(boardData);
+                createBoardandTable.table.innerHTML = '';
+                createBoardandTable.fillTable(boardData);
+                casesSelectionandMoves.getMoveData();
+                setTimeout(() => {
+                    casesSelectionandMoves.putEventOnCases();
+                }, 80 * createBoardandTable.interval);
+            }
+        })
         document.querySelector('#testing-reset-button').addEventListener('click', app.resetData);
-        app.reset = 1;
     },
     
     async resetData() {
