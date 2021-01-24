@@ -1,9 +1,0 @@
-PION Noir fait
-
-Pour faire les blancs, les différences sont :
-- le if piece_color = black du début
-- if piece_y = 7 pour la première ligne
-- le const casey1 avec y - 1 (ou y - 2)
-- l'insertion dans l'objet avec blackPiecesMoves
-- la couleur dans le if  des 4 derniers
-- le destination case y - 1 en black sera y + 1 en white

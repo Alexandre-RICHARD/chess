@@ -1,5 +1,5 @@
 const { Chess } = require('../models/index');
-const getLegitMoves = require('../chessGameBack/getLegitMoves');
+const getMoves = require('../chessGameBack/getMoves');
 
 const chessController = {
 
@@ -15,10 +15,9 @@ const chessController = {
     },
 
     getMoveData: async (req, res) => {
-        const movesData = getLegitMoves.getAllMoves(chessController.boardData);
+        const movesData = getMoves.getAllMoves(chessController.boardData);
         if (Object.keys(movesData).length !== 0) {
             res.json(movesData);
-            console.log(`L'objet movesData fait ${Object.keys(movesData).length} de longueur`);
         } else {
             console.log('L\'objet data est vide');
         }

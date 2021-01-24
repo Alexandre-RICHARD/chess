@@ -12,15 +12,15 @@
 
 
  Un truc genre
-Pion noir + Pion blanc (un objet avec leur move)
+Pion noir + Pion blanc
 
-Rook noir + Rook blanc (un objet avec tous leur move)
+Rook noir + Rook blanc
 
-Knight noir + Knight blanc (renvoyer un objet avec tout leur coup)
+Knight noir + Knight blanc
 
-Bishop noir + bishop blanc (renvoyer un objet avec tout leur coup)
+Bishop noir + bishop blanc
 
-Queen Noire + Queen Blanche (renvoyer un objet avec tout leur coup)
+Queen Noire + Queen Blanche
 
 TRICHER en renvoyant un faux objet avec toutes les cases contrôlées par les rois.
 
