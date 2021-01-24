@@ -7,12 +7,10 @@ const getMoves = {
 
     fu: {
         y: (color, value, howmany) => {
-            if (color === "black") {
-                return value - howmany;
-            }
-            if (color === "white") {
-                return value + howmany;
-            }
+            return (color === "black" ? value - howmany : value + howmany);
+        },
+        x: (color, value, howmany) => {
+            return (color === "black" ? value - howmany : value + howmany);
         },
     },
 
@@ -85,7 +83,36 @@ const getMoves = {
     rookMoves: (bData) => {
         const pieces = bData.filter(el => el.piece_name === "rook");
         pieces.forEach(pi => {
+            let color1 = null;
+            let color2 = null;
+            let moveCounter = 1;
+            if (pi.piece_color === "black") {
+                color1 = "black";
+                color2 = "white";
+            } else if (pi.piece_color === "white") {
+                color1 = "white";
+                color2 = "black";
+            }
+            getMoves.Allmoves[`${color1}Moves`][pi.piece_id] = {};
+            for (let direction = 0; direction < 2; direction++) {
+                for (let sens = -1; sens < 2; sens += 2) {
+                    //  direction: 0 ; sens -1  = x - 
+                    //  direction: 0 ; sens 1   = x +
+                    //  direction: 1 ; sens 1   = y -
+                    //  direction: 1 ; sens 1   = y +
+                    let searchInX = 4;
+                    let searchInY = 4;
+                    let stop = 0;
+                    let x = null;
+                    let y = null;
+                    // if (direction === 0 ?  :  )
+                    // while ((searchInX > 0) && (searchInX < 9) && (searchInY > 0) && (searchInY < 9) && stop !== 1) {
 
+
+                    // }
+                }
+
+            }
         });
     },
 

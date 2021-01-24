@@ -21,31 +21,45 @@ const casesSelectionandMoves = {
         casesSelectionandMoves.getCasesWithPieces().forEach(element => {
             element.addEventListener('click', casesSelectionandMoves.select, false);
         })
-        console.log(casesSelectionandMoves.moveDataObject);
     },
 
     select: (event) => {
         const selectedCase = event.target;
-        console.log(selectedCase);
         selectedCase.classList.add('selectedCase');
-        if (document.querySelector('.selectedCase')) {
-            casesSelectionandMoves.getCasesWithPieces().forEach(element => {
-                element.removeEventListener('click', casesSelectionandMoves.select, false);
-            })
-        }
-        casesSelectionandMoves.showPossibleMove(casesSelectionandMoves);
+        casesSelectionandMoves.getCasesWithPieces().forEach(element => {
+            element.removeEventListener('click', casesSelectionandMoves.select, false);
+        })
+        casesSelectionandMoves.showPossibleMove(selectedCase);
         selectedCase.addEventListener('click', casesSelectionandMoves.deselect, false);
     },
 
-    showPossibleMove: () => {
-
+    showPossibleMove: (selectedCase) => {
+        const color_id = selectedCase.getAttribute("piece_id");
+        const move = casesSelectionandMoves.moveDataObject[`${(color_id.charAt(2) === "b" ? "black" : "white")}Moves`][color_id];
+        if (move) {
+            for (let [key, value] of Object.entries(move)) {
+                const oneMove = document.querySelector(`[id="${value.destinationCase}"]`);
+                oneMove.classList.add('possibleMove');
+                oneMove.addEventListener('click', casesSelectionandMoves.move, false)
+            }
+        }
     },
 
     deselect: (event) => {
         const deselectedCase = event.target;
         deselectedCase.removeEventListener('click', casesSelectionandMoves.deselect, false);
         deselectedCase.classList.remove('selectedCase');
+        const showMove = document.querySelectorAll('.possibleMove');
+        if (showMove) {
+            showMove.forEach(element => {
+                element.classList.remove('possibleMove');
+            })
+        }
         casesSelectionandMoves.putEventOnCases();
+    },
+
+    move: () => {
+        console.log('Bientôt, je bougerai pour de vrai');
     },
 
 }

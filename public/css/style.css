@@ -6,6 +6,10 @@
     --pieces-white: #ececec;
     --pieces-black: #ffd700;
     --pieces-border: #646464;
+    --selectedC-color: #498851;
+    --selectedC-border: #36643c;
+    --possibleM-color: #cf9426;
+    --possibleM-border: #74510b;
 }
 
 body {
@@ -141,25 +145,21 @@ div[class*='pC--'] {
     height: 90%;
 }
 
-
 .selectedCase {
     width: 74px;
     height: 74px;
-    background-size: 85px;
-    background-position: -5.5px -5.5px;
-    background-color: rgb(73, 136, 81);
-    border: 3px solid rgb(54, 100, 60);
+    background-color: var(--selectedC-color);
+    border: 3px solid var(--selectedC-border);
     border-radius: 5px;
 }
 
-.possibleCase {
+.possibleMove {
     width: 74px;
     height: 74px;
-    background-size: 85px;
-    background-position: -5.5px -5.5px;
-    background-color: rgb(136, 114, 73);
-    border: 3px solid rgb(95, 80, 51);
+    background-color: var(--possibleM-color);
+    border: 3px solid var(--possibleM-border);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .unclickable {

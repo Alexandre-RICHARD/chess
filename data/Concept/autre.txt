@@ -12,6 +12,7 @@
 
 
  Un truc genre
+ 
 Pion noir + Pion blanc
 
 Rook noir + Rook blanc

@@ -8,7 +8,6 @@ const app = {
     init: () => {
 
         createBoardandTable.getBoardData().then((boardData) => {
-            console.log(boardData);
             if (boardData === "L'objet boardData est vide") {
                 console.log('Reset nécessaire')
             } else {

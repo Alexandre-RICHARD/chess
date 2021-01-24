@@ -35,14 +35,6 @@ Et voilà
 <summary>Développer</summary>
 
 ### <span style="color:red">En rouge, les choses actuellement en dev</span>
-
-  - Étape 0 : <span style="color:red">**Création, conception d'un plan "optimisé" à toutes les règles**</span>
-
-  - 1 ère étape : **La sélection des pièces**
-    - a: Je ne dois pouvoir cliquer que sur les case qui contienne une pièce.
-    - b: Quand je clique sur une pièce, elle doit se mettre en surbrillance
-    - c: Quand une case est sélectionné, on ne doit plus pouvoir sélectionner la moindre case (peut-être rajouter une option empêchant toute action de l'user pendant une seconde ou deux pour être sûr);
-    - d: Quand une case est sélectionné, elle doit pouvoir être recliqué pour la déselectionner ce qui fait revenir à l'état initial.
   
   - 2 ème étape : **Identification des coups possibles**
     - a: Quand une case est sélectionnée, cela part en JS pendant un moment pour sortir un tableau/objet de toutes les cases où il est possible d'aller.
@@ -95,8 +87,8 @@ Et voilà
 <summary>Développer</summary>
 
 - Si CODE dans le back, a chaque déplacement, avant de bouger la pièce, faire une vérification que ce déplacement est légal (ne pas faire confiance à l'user et au JS front)
-- Le fichier app/chessGame/originData.js n'est pas exactement conforme à ma BDD (l'histoire des null);
 - Un bug récurrent mais irreproduisible sur commande fait que lors de la sélection d'une pièce, tous les events listener originaux ne sont pas systématiquement supprimés. Il peut en rester 3 ou 4 qui rend la sélection de pièce multiples possibles. GRAVE (J'ai fait un truc, je ne suis pas sûr mais ça l'a peut-être régle. Je laisse cette ligne quand même on sait jamais.)
+- La partie let color avec le if et l'insertion dans l'objet d ela pièce est répété 6 fois. Très facile à factoriser en unifiant les fonctions.
 
 </details>
 
@@ -107,6 +99,12 @@ Et voilà
 
 - Création de l'échiquier, des lettres, des nombres automatisé et synchro avec des setTimeout.
 - Création de la base de données (mais qui sera peut-être remplacé par un simple objet)
+- Étape 0 : <span style="color:red">**Création, conception d'un plan "optimisé" à toutes les règles**</span>
+- 1 ère étape : **La sélection des pièces**
+    - a: Je ne dois pouvoir cliquer que sur les case qui contienne une pièce.
+    - b: Quand je clique sur une pièce, elle doit se mettre en surbrillance
+    - c: Quand une case est sélectionné, on ne doit plus pouvoir sélectionner la moindre case (peut-être rajouter une option empêchant toute action de l'user pendant une seconde ou deux pour être sûr);
+    - d: Quand une case est sélectionné, elle doit pouvoir être recliqué pour la déselectionner ce qui fait revenir à l'état initial.
 
 </details>
 
