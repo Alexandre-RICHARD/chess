@@ -78,6 +78,7 @@ const casesSelectionandMoves = {
             });
             if (response.ok) {
                 console.log('Déplacement approuvé');
+                app.init();
             } else {
                 console.log('Ca a couillé quelque part');
             }

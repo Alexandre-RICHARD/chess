@@ -8,6 +8,7 @@ const createBoardandTable = {
         try {
             let data = await fetch(app.base_URL + '/board/data');
             let boardData = await data.json();
+            console.log(boardData);
             return boardData;
         } catch (error) {
             console.trace(error);
@@ -28,9 +29,9 @@ const createBoardandTable = {
                 } else {
                     letter.style.borderTop = "2px solid"
                 }
-                setTimeout(() => {
+                // setTimeout(() => {
                     document.querySelector(`#letterC${x}`).appendChild(letter);
-                }, (x * 70 + y) * createBoardandTable.interval);
+                // }, (x * 70 + y) * createBoardandTable.interval);
             }
         }
     },
@@ -47,9 +48,9 @@ const createBoardandTable = {
                 } else {
                     number.style.borderLeft = "2px solid"
                 }
-                setTimeout(() => {
+                // setTimeout(() => {
                     document.querySelector(`#numberC${x}`).appendChild(number);
-                }, (y * 10 + 1 + 8 * x) * createBoardandTable.interval);
+                // }, (y * 10 + 1 + 8 * x) * createBoardandTable.interval);
             }
         }
     },
@@ -75,9 +76,9 @@ const createBoardandTable = {
                     boardCase.appendChild(clone);
                     boardCase.setAttribute("piece_id", ourCase.piece_id);
                 }
-                setTimeout(() => {
+                // setTimeout(() => {
                     document.querySelector('#casesC').appendChild(boardCase);
-                }, (x * 10 + y) * createBoardandTable.interval);
+                // }, (x * 10 + y) * createBoardandTable.interval);
             }
             z++; //? 9ème incrémentation de Z à la fin d'une ligne
         }

@@ -6,7 +6,7 @@ const getMoves = require('../chessGameBack/getMoves');
 const chessController = {
 
     boardData: {},
-    cimetary: {},
+    cimetary: [],
 
     getBoardData: (req, res) => {
         if (Object.keys(chessController.boardData).length !== 0) {
@@ -21,7 +21,7 @@ const chessController = {
         if (Object.keys(movesData).length !== 0) {
             res.json(movesData);
         } else {
-            console.log('L\'objet data est vide');
+            res.json('L\'objet movedata est vide');
         }
     },
 
@@ -46,15 +46,47 @@ const chessController = {
                 killingMove: (req.body.killingMove === 'true' ? true : false),
             }
             const movesData = getMoves.getAllMoves(chessController.boardData)[`${(move.piece_id.charAt(2) === "b" ? "black" : "white")}Moves`][move.piece_id];
-            const result = Object.values(movesData).find(element => 
+            const result = Object.values(movesData).find(element =>
                 element.originCase === move.originCase &&
                 element.destinationCase === move.destinationCase &&
                 element.killingMove === move.killingMove
             );
             if (result) {
                 res.json('OK');
+                const destCase = chessController.boardData.find(element => element.x === parseInt(move.destinationCase.charAt(0), 10) && element.y === parseInt(move.destinationCase.charAt(1), 10))
+                const origCase = chessController.boardData.find(element => element.piece_id === move.piece_id)
+                if (move.killingMove === true) {
+                    //! Pas encore de prise en compte de la prise en passant
+                    const deadPiece = {
+                        pieceName: destCase.piece_name,
+                        pieceId: destCase.piece_id,
+                        pieceColor: destCase.piece_color,
+                    }
+                    chessController.cimetary.push(deadPiece);
+                    chessController.boardData[destCase.id - 1].piece_name = origCase.piece_name;
+                    chessController.boardData[destCase.id - 1].piece_id = origCase.piece_id;
+                    chessController.boardData[destCase.id - 1].piece_color = origCase.piece_color;
+                    chessController.boardData[destCase.id - 1].pawn_just_move_two = origCase.pawn_just_move_two;
+                    chessController.boardData[destCase.id - 1].already_move = origCase.already_move;
+                    chessController.boardData[origCase.id - 1].piece_name = null;
+                    chessController.boardData[origCase.id - 1].piece_id = null;
+                    chessController.boardData[origCase.id - 1].piece_color = null;
+                    chessController.boardData[origCase.id - 1].pawn_just_move_two = null;
+                    chessController.boardData[origCase.id - 1].already_move = null;
+                } else {
+                    chessController.boardData[destCase.id - 1].piece_name = origCase.piece_name;
+                    chessController.boardData[destCase.id - 1].piece_id = origCase.piece_id;
+                    chessController.boardData[destCase.id - 1].piece_color = origCase.piece_color;
+                    chessController.boardData[destCase.id - 1].pawn_just_move_two = origCase.pawn_just_move_two;
+                    chessController.boardData[destCase.id - 1].already_move = origCase.already_move;
+                    chessController.boardData[origCase.id - 1].piece_name = null;
+                    chessController.boardData[origCase.id - 1].piece_id = null;
+                    chessController.boardData[origCase.id - 1].piece_color = null;
+                    chessController.boardData[origCase.id - 1].pawn_just_move_two = null;
+                    chessController.boardData[origCase.id - 1].already_move = null;
+                }
             } else {
-                res.status(500).json('Il y a eu triche là (ou problème qui sait-je'.toString());
+                res.status(500).json('Il y a eu triche là (ou problème qui sait-je)'.toString());
             }
         } catch (error) {
             console.trace(error);

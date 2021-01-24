@@ -28,9 +28,9 @@ const app = {
                 createBoardandTable.table.innerHTML = '';
                 createBoardandTable.fillTable(boardData);
                 casesSelectionandMoves.getMoveData();
-                setTimeout(() => {
+                // setTimeout(() => {
                     casesSelectionandMoves.putEventOnCases();
-                }, 80 * createBoardandTable.interval);
+                // }, 80 * createBoardandTable.interval);
             }
         })
         document.querySelector('#testing-reset-button').addEventListener('click', app.resetData);
