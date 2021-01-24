@@ -89,6 +89,7 @@ Et voilà
 - Si CODE dans le back, a chaque déplacement, avant de bouger la pièce, faire une vérification que ce déplacement est légal (ne pas faire confiance à l'user et au JS front)
 - Un bug récurrent mais irreproduisible sur commande fait que lors de la sélection d'une pièce, tous les events listener originaux ne sont pas systématiquement supprimés. Il peut en rester 3 ou 4 qui rend la sélection de pièce multiples possibles. GRAVE (J'ai fait un truc, je ne suis pas sûr mais ça l'a peut-être régle. Je laisse cette ligne quand même on sait jamais.)
 - La partie let color avec le if et l'insertion dans l'objet d ela pièce est répété 6 fois. Très facile à factoriser en unifiant les fonctions.
+- Pour "délirer", bundlizer le back et le front et les réunir en deux fichiers uniquement.
 
 </details>
 

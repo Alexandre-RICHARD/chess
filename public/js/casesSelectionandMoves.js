@@ -34,13 +34,17 @@ const casesSelectionandMoves = {
     },
 
     showPossibleMove: (selectedCase) => {
-        const color_id = selectedCase.getAttribute("piece_id");
-        const move = casesSelectionandMoves.moveDataObject[`${(color_id.charAt(2) === "b" ? "black" : "white")}Moves`][color_id];
+        const piece_id = selectedCase.getAttribute("piece_id");
+        const move = casesSelectionandMoves.moveDataObject[`${(piece_id.charAt(2) === "b" ? "black" : "white")}Moves`][piece_id];
         if (move) {
             for (let [key, value] of Object.entries(move)) {
                 const oneMove = document.querySelector(`[id="${value.destinationCase}"]`);
                 oneMove.classList.add('possibleMove');
-                oneMove.addEventListener('click', casesSelectionandMoves.move, false)
+                oneMove.setAttribute("piece_id", piece_id);
+                oneMove.setAttribute("origin_case", value.originCase);
+                oneMove.setAttribute("destination_case", value.destinationCase);
+                oneMove.setAttribute("killingMove", value.killingMove);
+                oneMove.addEventListener('click', casesSelectionandMoves.uploadMove, false)
             }
         }
     },
@@ -53,13 +57,33 @@ const casesSelectionandMoves = {
         if (showMove) {
             showMove.forEach(element => {
                 element.classList.remove('possibleMove');
+                element.removeAttribute("origin_case");
+                element.removeAttribute("destination_case");
+                element.removeAttribute("killingMove");
             })
         }
         casesSelectionandMoves.putEventOnCases();
     },
 
-    move: () => {
-        console.log('Bientôt, je bougerai pour de vrai');
-    },
+    async uploadMove(event) {
+        const move = new FormData
+        move.append('piece_id', event.target.getAttribute("piece_id"));
+        move.append('originCase', event.target.getAttribute("origin_case"));
+        move.append('destinationCase', event.target.getAttribute("destination_case"));
+        move.append('killingMove', event.target.getAttribute("killingMove"));
+        try {
+            const response = await fetch(app.base_URL + '/move/try', {
+                method: "POST",
+                body: move
+            });
+            if (response.ok) {
+                console.log('Déplacement approuvé');
+            } else {
+                console.log('Ca a couillé quelque part');
+            }
+        } catch (error) {
+            console.trace(error);
+        }
+    }
 
 }
