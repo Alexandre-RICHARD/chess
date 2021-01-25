@@ -139,7 +139,62 @@ const getMoves = {
     knightMoves: (bData) => {
         const pieces = bData.filter(el => el.piece_name === "knight");
         pieces.forEach(pi => {
+            let color1 = null;
+            let color2 = null;
+            let moveCounter = 1;
+            if (pi.piece_color === "black") {
+                color1 = "black";
+                color2 = "white";
+            } else if (pi.piece_color === "white") {
+                color1 = "white";
+                color2 = "black";
+            }
+            getMoves.Allmoves[`${color1}Moves`][pi.piece_id] = {};
+            let searchX = 1;
+            let searchY = 2;
+            for (let i = 0; i < 8; i++) {
+                if (i === 1) {
+                    searchX = 2, searchY = 1
+                }
+                if (i === 2) {
+                    searchY = -1
+                }
+                if (i === 3) {
+                    searchX = 1, searchY = -2
+                }
+                if (i === 4) {
+                    searchX = -1
+                }
+                if (i === 5) {
+                    searchX = -2, searchY = -1
+                }
+                if (i === 6) {
+                    searchY = 1
+                }
+                if (i === 7) {
+                    searchX = -1, searchY = 2
+                }
+                const caseS = bData.find(el => el.x === pi.x + searchX && el.y === pi.y + searchY);
+                if (caseS) {
+                    if (caseS.piece_color === null) {
+                        getMoves.Allmoves[`${color1}Moves`][pi.piece_id][moveCounter] = {
+                            originCase: `${pi.x}${pi.y}`,
+                            destinationCase: `${caseS.x}${caseS.y}`,
+                            killingMove: false,
+                        }
+                        moveCounter++;
+                    }
+                    if (caseS.piece_color === color2) {
+                        getMoves.Allmoves[`${color1}Moves`][pi.piece_id][moveCounter] = {
+                            originCase: `${pi.x}${pi.y}`,
+                            destinationCase: `${caseS.x}${caseS.y}`,
+                            killingMove: true,
+                        }
+                        moveCounter++;
+                    }
+                }
 
+            }
         });
     },
 
@@ -210,18 +265,32 @@ const getMoves = {
             getMoves.Allmoves[`${color1}Moves`][pi.piece_id] = {};
             let searchX = 0;
             let searchY = 1;
-            for (let i = 0; i < 8; i ++) {
-                if (i === 1 ) {searchX = 1}
-                if (i === 2 ) {searchY = 0}
-                if (i === 3 ) {searchY = -1}
-                if (i === 4 ) {searchX = 0}
-                if (i === 5 ) {searchX = -1}
-                if (i === 6 ) {searchY = 0}
-                if (i === 7 ) {searchY = 1}
+            for (let i = 0; i < 8; i++) {
+                if (i === 1) {
+                    searchX = 1
+                }
+                if (i === 2) {
+                    searchY = 0
+                }
+                if (i === 3) {
+                    searchY = -1
+                }
+                if (i === 4) {
+                    searchX = 0
+                }
+                if (i === 5) {
+                    searchX = -1
+                }
+                if (i === 6) {
+                    searchY = 0
+                }
+                if (i === 7) {
+                    searchY = 1
+                }
                 let stop = 0;
                 let search = 0;
                 while (stop !== 1) {
-                    search ++;
+                    search++;
                     const caseS = bData.find(el => el.x === pi.x + search * searchX && el.y === pi.y + search * searchY);
                     if (caseS) {
                         if (caseS.piece_color === null) {
@@ -254,9 +323,6 @@ const getMoves = {
 
     kingMoves: (bData) => {
         const pieces = bData.filter(el => el.piece_name === "king");
-        pieces.forEach(pi => {
-
-        });
     },
 
     getAllMoves: (bData) => {
