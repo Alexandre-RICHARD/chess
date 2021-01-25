@@ -157,7 +157,7 @@ const getMoves = {
                 color2 = "black";
             }
             getMoves.Allmoves[`${color1}Moves`][pi.piece_id] = {};
-            for (let xDirection = -1; xDirection < 2; xDirection+= 2) {
+            for (let xDirection = -1; xDirection < 2; xDirection += 2) {
                 for (let yDirection = -1; yDirection < 2; yDirection += 2) {
                     let stop = 0;
                     let search = 0;
@@ -192,13 +192,63 @@ const getMoves = {
                 }
             }
         });
-
     },
 
     queenMoves: (bData) => {
         const pieces = bData.filter(el => el.piece_name === "queen");
         pieces.forEach(pi => {
-
+            let color1 = null;
+            let color2 = null;
+            let moveCounter = 1;
+            if (pi.piece_color === "black") {
+                color1 = "black";
+                color2 = "white";
+            } else if (pi.piece_color === "white") {
+                color1 = "white";
+                color2 = "black";
+            }
+            getMoves.Allmoves[`${color1}Moves`][pi.piece_id] = {};
+            let searchX = 0;
+            let searchY = 1;
+            for (let i = 0; i < 8; i ++) {
+                if (i === 1 ) {searchX = 1}
+                if (i === 2 ) {searchY = 0}
+                if (i === 3 ) {searchY = -1}
+                if (i === 4 ) {searchX = 0}
+                if (i === 5 ) {searchX = -1}
+                if (i === 6 ) {searchY = 0}
+                if (i === 7 ) {searchY = 1}
+                let stop = 0;
+                let search = 0;
+                while (stop !== 1) {
+                    search ++;
+                    const caseS = bData.find(el => el.x === pi.x + search * searchX && el.y === pi.y + search * searchY);
+                    if (caseS) {
+                        if (caseS.piece_color === null) {
+                            getMoves.Allmoves[`${color1}Moves`][pi.piece_id][moveCounter] = {
+                                originCase: `${pi.x}${pi.y}`,
+                                destinationCase: `${caseS.x}${caseS.y}`,
+                                killingMove: false,
+                            }
+                            moveCounter++;
+                        }
+                        if (caseS.piece_color === color2) {
+                            getMoves.Allmoves[`${color1}Moves`][pi.piece_id][moveCounter] = {
+                                originCase: `${pi.x}${pi.y}`,
+                                destinationCase: `${caseS.x}${caseS.y}`,
+                                killingMove: true,
+                            }
+                            moveCounter++;
+                            stop = 1;
+                        }
+                        if (caseS.piece_color === color1) {
+                            stop = 1;
+                        }
+                    } else {
+                        stop = 1;
+                    }
+                }
+            }
         });
     },
 
