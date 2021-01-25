@@ -17,7 +17,7 @@ const createBoardandTable = {
     // Pour créer nos deux lignes de lettres
 
     drawLetters: () => {
-        const lettersStock =  ["A", "B", "C", "D", "E", "F", "G", "H"] //? Le tableau qui nous servira de base pour la création des lettres
+        const lettersStock = ["A", "B", "C", "D", "E", "F", "G", "H"] //? Le tableau qui nous servira de base pour la création des lettres
         for (let x = 0; x < 2; x++) {
             for (let y = 0; y < 8; y++) {
                 const letter = document.createElement('div');
@@ -29,7 +29,7 @@ const createBoardandTable = {
                     letter.style.borderTop = "2px solid"
                 }
                 // setTimeout(() => {
-                    document.querySelector(`#letterC${x}`).appendChild(letter);
+                document.querySelector(`#letterC${x}`).appendChild(letter);
                 // }, (x * 70 + y) * createBoardandTable.interval);
             }
         }
@@ -48,7 +48,7 @@ const createBoardandTable = {
                     number.style.borderLeft = "2px solid"
                 }
                 // setTimeout(() => {
-                    document.querySelector(`#numberC${x}`).appendChild(number);
+                document.querySelector(`#numberC${x}`).appendChild(number);
                 // }, (y * 10 + 1 + 8 * x) * createBoardandTable.interval);
             }
         }
@@ -76,7 +76,7 @@ const createBoardandTable = {
                     boardCase.setAttribute("piece_id", ourCase.piece_id);
                 }
                 // setTimeout(() => {
-                    document.querySelector('#casesC').appendChild(boardCase);
+                document.querySelector('#casesC').appendChild(boardCase);
                 // }, (x * 10 + y) * createBoardandTable.interval);
             }
             z++; //? 9ème incrémentation de Z à la fin d'une ligne

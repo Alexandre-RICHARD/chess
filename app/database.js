@@ -1,14 +1,14 @@
 const {
     Sequelize
-  } = require('sequelize');
-  
+} = require('sequelize');
+
 //   Configuration de sequelize
-  const sequelize = new Sequelize(process.env.PG_URL, {
+const sequelize = new Sequelize(process.env.PG_URL, {
     define: {
-      underscored: true,
-      timestamps: false
+        underscored: true,
+        timestamps: false
     },
-    logging: false          //? logging false pour pas être harcelé
-  });
-  
-  module.exports = sequelize;
+    logging: false //? logging false pour pas être harcelé
+});
+
+module.exports = sequelize;

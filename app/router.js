@@ -1,4 +1,6 @@
-const { Router } = require('express');
+const {
+    Router
+} = require('express');
 const router = Router();
 
 // Notre router qui va seulement s'occuper des requêtes mais ne redirige vers aucune page

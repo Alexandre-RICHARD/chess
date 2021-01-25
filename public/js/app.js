@@ -29,13 +29,13 @@ const app = {
                 createBoardandTable.fillTable(boardData);
                 casesSelectionandMoves.getMoveData();
                 // setTimeout(() => {
-                    casesSelectionandMoves.putEventOnCases();
+                casesSelectionandMoves.putEventOnCases();
                 // }, 80 * createBoardandTable.interval);
             }
         })
         document.querySelector('#testing-reset-button').addEventListener('click', app.resetData);
     },
-    
+
     async resetData() {
         try {
             await fetch(app.base_URL + '/game/reset');

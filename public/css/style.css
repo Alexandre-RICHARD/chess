@@ -43,7 +43,10 @@ body {
     min-height: 32px;
 }
 
-.letter:nth-child(1), .letter:nth-child(8), .letter:nth-child(9), .letter:nth-child(16) {
+.letter:nth-child(1),
+.letter:nth-child(8),
+.letter:nth-child(9),
+.letter:nth-child(16) {
     padding-left: 1.95px;
 }
 
@@ -72,7 +75,9 @@ div {
     height: 30px;
 }
 
-.letter, .number, .case {
+.letter,
+.number,
+.case {
     justify-content: center;
     font-weight: 700;
     font-size: 25px;
