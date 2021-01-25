@@ -8,7 +8,6 @@ const createBoardandTable = {
         try {
             let data = await fetch(app.base_URL + '/board/data');
             let boardData = await data.json();
-            console.log(boardData);
             return boardData;
         } catch (error) {
             console.trace(error);

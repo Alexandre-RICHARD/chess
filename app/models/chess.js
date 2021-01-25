@@ -7,7 +7,7 @@ class Chess extends Sequelize.Model {};
 Chess.init({
     x: Sequelize.NUMBER,
     y: Sequelize.NUMBER,
-    case_colour: Sequelize.STRING,
+    case_color: Sequelize.STRING,
     is_piece: Sequelize.BOOLEAN,
     control_by_white: Sequelize.BOOLEAN,
     control_by_black: Sequelize.BOOLEAN,

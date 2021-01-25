@@ -6,7 +6,7 @@ CREATE TABLE "chess"(
   "id" SERIAL PRIMARY KEY,
   "x" INTEGER NOT NULL,
   "y" INTEGER NOT NULL,
-  "case_colour" TEXT NOT NULL,
+  "case_color" TEXT NOT NULL,
   "is_piece" BOOLEAN NOT NULL,
   "control_by_white" BOOLEAN NOT NULL,
   "control_by_black" BOOLEAN NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE "chess"(
   "already_move" BOOLEAN
 );
 
-INSERT INTO "chess"("x", "y", "case_colour", "is_piece", "control_by_white", "control_by_black", "piece_name", "piece_id", "piece_color", "pawn_just_move_two", "already_move") VALUES
+INSERT INTO "chess"("x", "y", "case_color", "is_piece", "control_by_white", "control_by_black", "piece_name", "piece_id", "piece_color", "pawn_just_move_two", "already_move") VALUES
 (1, 8, 'white', true, false, false,  'rook',  'r1b',  'black', null, false),
 (2, 8, 'black', true, false, false,  'knight',  'c1b',  'black', null, null),
 (3, 8, 'white', true, false, false,  'bishop',  'b1b',  'black', null, null),

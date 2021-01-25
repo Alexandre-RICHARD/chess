@@ -31,6 +31,12 @@ const casesSelectionandMoves = {
         })
         casesSelectionandMoves.showPossibleMove(selectedCase);
         selectedCase.addEventListener('click', casesSelectionandMoves.deselect, false);
+
+        //! Temporaire
+        // console.table(casesSelectionandMoves.moveDataObject);
+        // const id = selectedCase.getAttribute("piece_id");
+        // console.table(casesSelectionandMoves.moveDataObject.blackMoves[`${id}`])
+        // console.table(casesSelectionandMoves.moveDataObject.whiteMoves[`${id}`])
     },
 
     showPossibleMove: (selectedCase) => {
